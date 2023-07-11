@@ -1,0 +1,12 @@
+
+ALTER TABLE `invoice_detail` ADD `Weight` VARCHAR(255) NULL AFTER `Qty`, ADD `Freight` VARCHAR(255) NULL AFTER `Weight`;
+
+ALTER TABLE `invoice_master` ADD `ReceiverName` VARCHAR(255) NULL DEFAULT NULL AFTER `Balance`, ADD `ReceiverAddress` VARCHAR(255) NULL DEFAULT NULL AFTER `ReceiverName`, ADD `ReceiverMob` VARCHAR(255) NULL DEFAULT NULL AFTER `ReceiverAddress`;
+
+
+ALTER TABLE `invoice_master` ADD `DocumentFees` DOUBLE(8,2) NULL DEFAULT NULL AFTER `Shipping`, ADD `Insurance` DOUBLE(8,2) NULL DEFAULT NULL AFTER `DocumentFees`, ADD `PackingFee` DOUBLE(8,2) NULL DEFAULT NULL AFTER `Insurance`, ADD `TransportationCharges` DOUBLE(8,2) NULL DEFAULT NULL AFTER `PackingFee`, ADD `TotalVat` DOUBLE(8,2) NULL DEFAULT NULL AFTER `TransportationCharges`;
+
+
+ALTER TABLE `invoice_master` ADD `Destination` VARCHAR(255) NULL DEFAULT NULL AFTER `Date`, ADD `Pcs` VARCHAR(255) NULL DEFAULT NULL AFTER `Destination`, ADD `TotalWeight` VARCHAR(255) NULL DEFAULT NULL AFTER `Pcs`;
+
+ALTER TABLE `invoice_master` ADD `TrackingNumber` VARCHAR(255) NULL AFTER `InvoiceType`;
