@@ -217,17 +217,11 @@
     <div class="page-content">
         <div class="container-fluid">
             <!-- start page title -->
-
             <!-- enctype="multipart/form-data" -->
             <form action="{{URL('/SaleInvoiceSave')}}" method="post">
-
-
                 <input type="hidden" name="_token" id="csrf" value="{{Session::token()}}">
-
-
                 <div class="card shadow-sm">
                     <div class="card-body">
-
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-1 row">
@@ -401,14 +395,10 @@
                                 
                             </div>
                         </div>
-
-<script>
+                        <script>
 var i = $('table tr').length;
 </script>
-
-
                         <hr class="invoice-spacing">
-
                         <div class='text-center'>
 
                         </div>
@@ -469,8 +459,6 @@ var i = $('table tr').length;
 
                         
                         </div>
-
-
                         <div class="row mt-4">
 
                             <div class="col-lg-8 col-12  ">
@@ -627,28 +615,9 @@ var i = $('table tr').length;
                                     
                             </div>
                         </div>
-                        <div>
-
-
-
-                        </div>
-
-
-
-
-
+                    </div>
+                </div>
             </form>
-
-            <!--  <div class='row'>
-          <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
-            <div class="well text-center">
-          <h2>Back TO Tutorial: <a href="#"> Invoice System </a> </h2>
-        </div>
-          </div>
-        </div>   -->
-
-
-
         </div>
     </div>
 </div>

@@ -5675,7 +5675,7 @@ class Accounts extends Controller
     // END OF SALE RETURN
 
     //  start for item array from invoice
-    for ($i = 0; $i < count($request->ItemID); $i++) {
+    for ($i = 0; $i < count($request->Description); $i++) {
       $invoice_det = array(
         'InvoiceMasterID' =>  $InvoiceMasterID,
         'InvoiceNo' => $request->InvoiceNo,
@@ -5691,10 +5691,6 @@ class Accounts extends Controller
         'DiscountType' => $request->DiscountType[$i],
         'Gross' => $request->Gross[$i],
         'DiscountAmountItem' => 0//$request->DiscountAmountItem[$i],
-
-
-
-
       );
 
       $id = DB::table('invoice_detail')->insertGetId($invoice_det);
