@@ -370,13 +370,13 @@
                                     </div>
                                 </div>
                                 <div class="mb-1 row">
-                        <div class="col-sm-3">
-                            <label class="col-form-label" for="password">Booking No</abel> 
-                        </div>
-
-                        <div class="col-sm-9">
-                             <input type="text" class="form-control" name="BookingNo" value=""  id="BookingNo" >
-                        </div>
+                                <div class="col-sm-3">
+                                    <label class="col-form-label" for="password">
+                                    Booking No</label> 
+                                </div>
+                                <div class="col-sm-9">
+                                     <input type="text" class="form-control" name="BookingNo" value=""  id="BookingNo" >
+                                </div>
                     </div>
                                 <div class="col-12" >
                                     <div class="mb-1 row">
@@ -393,7 +393,7 @@
                         </div>
 
 <script>
-     var i = $('table tr').length;
+var i = $('table tr').length;
 </script>
 
 
@@ -413,11 +413,6 @@
                                             <th width="2%">FREIGHT</th>
                                             <th width="2%">VAT</th>
                                             <th width="2%">TOTAL</th>
-                                            <!-- <th width="2%">DISCOUNT</th> 
-                                            <th width="2%">Value for Tax</th>
-                                            <th width="2%">Tax</th>
-                                            <th width="2%">Tax Val</th>
-                                            <th width="4%">AMOUNT</th>-->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -475,7 +470,7 @@
 
                         <div class="row mt-4">
 
-                            <div class="col-lg-8 col-12  ">
+                            <div class="col-lg-6 col-12  ">
                                 <h6>Customer Notes: </h6>
 
 
@@ -501,7 +496,7 @@
                             </div>
 
 
-                            <div class="col-lg-4 col-12 ">
+                            <div class="col-lg-6 col-12 ">
                                 <!-- <input type="text" class="form-control" id="TotalTaxAmount" name="TaxTotal" placeholder="TaxTotal" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"> -->
                                 <form class="form-inline">
                                    <!--  <div class="form-group mt-1">
@@ -512,126 +507,121 @@
                                             <input type="text" class="form-control" id="grandtotaltax" name="grandtotaltax" placeholder="Subtotal" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                         </div>
                                     </div> -->
-                                    <div class="form-group mt-1">
-                                        <label>TOTAL AMOUNT: &nbsp;</label>
-                                        <div class="input-group">
+
+                                    <div class="col-12">
+                                    <div class="mb-1 row">
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label" >TOTAL AMOUNT: &nbsp;</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="input-group">
                                             <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
 
                                             <input type="text" class="form-control" id="subTotal" name="SubTotal" placeholder="Subtotal" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                         </div>
+                                        </div>
                                     </div>
+                                </div>
                                     
-                                    <div class="form-group mt-1">
-                                        <label>DOCUMNETS FEES: &nbsp;</label>
+                                        <div class="col-12">
+                                    <div class="mb-1 row">
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label" >DOCUMNETS FEES: &nbsp;</label>
+                                        </div>
+                                        <div class="col-sm-9">
                                         <div class="input-group">
                                             <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
 
                                             <input type="text" class="form-control" id="DocumentFees" name="DocumentFees"  onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                         </div>
+                                        </div>
                                     </div>
+                                </div>
                                     
 
-                                    <div class="form-group mt-1">
-                                        <label>INSURANCE: &nbsp;</label>
+                                        <div class="col-12">
+                                    <div class="mb-1 row">
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label" >INSURANCE: &nbsp;</label>
+                                        </div>
+                                        <div class="col-sm-9">
                                         <div class="input-group">
                                             <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
 
                                             <input type="text" class="form-control" id="Insurance" name="Insurance"  onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                         </div>
+                                        </div>
                                     </div>
+                                </div>
                                     
 
-                                    <div class="form-group mt-1">
-                                        <label>WOODEN BOX / PACKING FEES: &nbsp;</label>
+
+                                        <div class="col-12">
+                                    <div class="mb-1 row">
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label" >WOODEN BOX / PACKING FEES: &nbsp;</label>
+                                        </div>
+                                        <div class="col-sm-9">
                                         <div class="input-group">
                                             <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
 
                                             <input type="text" class="form-control" id="PackingFee" name="PackingFee" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                         </div>
+                                        </div>
                                     </div>
+                                </div>
+                                    
 
-                                    <div class="form-group mt-1">
-                                        <label>TRANSPORTATION CHARGES: &nbsp;</label>
+                                        <div class="col-12">
+                                    <div class="mb-1 row">
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label" >TRANSPORTATION CHARGES: &nbsp;</label>
+                                        </div>
+                                        <div class="col-sm-9">
                                         <div class="input-group">
                                             <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
 
                                             <input type="text" class="form-control" id="TransportationCharges" name="TransportationCharges" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                         </div>
+                                        </div>
                                     </div>
-
-                                    <div class="form-group mt-1">
-                                        <label>TOTAL VAT: &nbsp;</label>
+                                </div>
+                                    
+                                    
+                                        <div class="col-12">
+                                    <div class="mb-1 row">
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label" >TOTAL VAT: &nbsp;</label>
+                                        </div>
+                                        <div class="col-sm-9">
                                         <div class="input-group">
                                             <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
 
                                             <input type="text" class="form-control" id="TotalVat" name="TotalVat" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                         </div>
+                                        </div>
                                     </div>
+                                </div>
                                     
+
+
+
                                     
-
-                                    <!-- <div class="form-group mt-1">
-                                        <label>Discount: &nbsp;</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text bg-light">%</span>
-
-                                            <input type="text" class="form-control" value="0" id="discountper" name="DiscountPer" placeholder="Tax" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" >
-
-                                            <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
-
-                                            <input type="text" name="DiscountAmount" class="form-control" id="discountAmount" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" value="0">
+                                        <div class="col-12">
+                                    <div class="mb-1 row">
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label" >Grand Total: &nbsp;</label>
                                         </div>
-                                    </div> -->
-
-
-
-                                    <!-- <div class="form-group mt-1">
-
-                                        <label>Total: &nbsp;</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
-                                            <input type="number" name="Total" id="Total" class="form-control" step="0.01" id="totalafterdisc"   placeholder="Total" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
-                                        </div>
-                                    </div> -->
-                               
-
-                                    <!-- <div class="form-group mt-1 d-none">
-
-                                        <label>Shipping: &nbsp;</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
-                                            <input type="number" name="Shipping" class="form-control" step="0.01" id="shipping" placeholder="Grand Total" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" value="0">
-                                        </div>
-                                    </div> -->
-
-                                    <div class="form-group mt-1">
-
-                                        <label>Grand Total: &nbsp;</label>
+                                        <div class="col-sm-9">
                                         <div class="input-group">
                                             <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
                                             <input type="number" name="Grandtotal"  id="Grandtotal" class="form-control" step="0.01" id="grandtotal" placeholder="Grand Total"   onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" value="0">
                                         </div>
-                                    </div>
-
-
-
-                                    <!-- <div class="form-group mt-1 d-none">
-                                        <label>Amount Paid: &nbsp;</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
-                                            <input type="number" class="form-control" id="amountPaid" name="amountPaid" placeholder="Amount Paid" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" step="0.01" value="0">
                                         </div>
                                     </div>
-
-                                    <div class="form-group mt-1 d-none">
-
-                                        <label>Amount Due: &nbsp;</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
-                                            <input type="number" class="form-control amountDue" name="amountDue" id="amountDue" placeholder="Amount Due" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" step="0.01">
-                                        </div>
-                                    </div> -->
-
+                                </div>
+                                    
+                                    
                             </div>
                         </div>
                         <div>
