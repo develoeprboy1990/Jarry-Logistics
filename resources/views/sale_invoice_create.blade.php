@@ -243,7 +243,6 @@
                                         </select>
                                     </div>
                                 </div>
-
                                 <div class="mb-1 row " id="WalkinCustomer">
                                     <div class="col-sm-3">
                                         <label class="col-form-label text-danger" for="password">Walkin Customer </label>
@@ -258,7 +257,7 @@
                                         <label class="col-form-label" for="password">Salesperson </label>
                                     </div>
                                     <div class="col-sm-9">
-                                        <select name="UserID" id="UserID" class="form-select select2" style="width:100%;>
+                                        <select name="UserID" id="UserID" class="form-select select2" style="width:100%;">
                                             <option value="">Select</option>
                                             <?php foreach ($user as $key => $value) : ?>
                                                 <option value="{{$value->UserID}}">{{$value->FullName}}</option>
@@ -266,43 +265,41 @@
                                         </select>
                                     </div>
                                 </div>
-
                                 <div class="mb-1 row">
                                     <div class="col-sm-3">
-                                        <label class="col-form-label" for="password">Subject </label>
+                                        <label class="col-form-label" for="password">Destination</label> 
                                     </div>
-                                    <div class="col-sm-9">
-                                        <input type="text" id="first-name" class="form-control" name="Subject" value="" placeholder="Let your customer know what this invoice is for">
 
+                                    <div class="col-sm-9">
+                                         <input type="text" id="Destination" class="form-control" name="Destination" value="" placeholder="Destination">
                                     </div>
                                 </div>
-                                <div class="mb-1 row">
+                                <div class=" mb-1 row">
                                     <div class="col-sm-3">
-                                        <label class="col-form-label" for="password">Tax</label> 
+                                        <label class="col-form-label text-danger" for="password">Tracking Number</label>
                                     </div>
-
                                     <div class="col-sm-9">
-                                        <select name="UserI D" id="seletedVal" class="form-select select2" onchange="GetSelectedTextValue(this.value)" style="width: 100%;">
-                                        <?php foreach ($tax as $key => $valueX1) : ?>
-                                                        <option value="{{$valueX1->TaxPer}}">{{$valueX1->Description}}</option>
-                                                    <?php endforeach ?>
-
-                                        </select>
+                                         <input type="text" name="TrackingNumber" autocomplete="off" class="form-control">
                                     </div>
                                 </div>
-                                
-<div class="mb-1 row">
+                                <div class=" mb-1 row">
                                     <div class="col-sm-3">
-                                        <label class="col-form-label" for="password">Item Rates Are </label> 
+                                        <label class="col-form-label" for="password">Receiver Name</label>
                                     </div>
-
                                     <div class="col-sm-9">
-                                      <select name="TaxType" id="TaxType" class="form-select">
- <option value="TaxInclusive">Tax Inclusive</option>
- <option value="TaxExclusive" selected>Tax Exclusive</option>
- </select>
+                                         <input type="text" name="ReceiverName" autocomplete="off" class="form-control">
                                     </div>
                                 </div>
+                                <div class=" mb-1 row">
+                                    <div class="col-sm-3">
+                                        <label class="col-form-label" for="password">Receiver Mob</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                         <input type="text" name="ReceiverMob" autocomplete="off" class="form-control">
+                                    </div>
+                                </div>
+
+
 
                             </div>
                             <div class="col-md-6">
@@ -323,7 +320,6 @@
 
                                     </div>
                                 </div>
-
                                 <div class="col-12">
                                     <div class="mb-1 row">
                                         <div class="col-sm-3">
@@ -352,52 +348,30 @@
                                 <div class="col-12">
                                     <div class="mb-1 row">
                                         <div class="col-sm-3">
-                                            <label class="col-form-label text-danger" for="contact-info">Due Date</label>
+                                            <label class="col-form-label" for="password">Pcs </label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <div class="input-group" id="datepicker22">
-                                                <input type="text" name="DueDate" autocomplete="off" class="form-control" placeholder="yyyy-mm-dd" data-date-format="yyyy-mm-dd" data-date-container="#datepicker22" data-provide="datepicker" data-date-autoclose="true" value="{{date('Y-m-d')}}">
-                                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
-                                            </div>
+                                            <input type="text" name="Pcs" autocomplete="off" class="form-control">
+
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="mb-1 row">
+                        <div class="col-sm-3">
+                            <label class="col-form-label" for="password">Total Weight</label> 
+                        </div>
+
+                        <div class="col-sm-9">
+                             <input type="text" class="form-control" name="TotalWeight" value="" placeholder="Total Weight" id="TotalWeight" >
+                        </div>
+                    </div>
+                                <div class="col-12" >
                                     <div class="mb-1 row">
                                         <div class="col-sm-3">
-                                            <label class="col-form-label text-danger" for="password">Ref # (L.P.O) </label>
+                                            <label class="col-form-label" for="password">Receiver Address </label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" name="ReferenceNo" autocomplete="off" class="form-control">
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" mb-1 row">
-                                    <div class="col-sm-3">
-                                        <label class="col-form-label text-danger" for="password">Payment Mode </label>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <select name="PaymentMode" id="PaymentMode" class="form-select select2" style="width:100%;">
-                                           
-
-
-                                             @foreach($payment_mode as $value)
-                                              <option value="{{$value->PaymentMode}}" >{{$value->PaymentMode}}</option>
-                                             @endforeach
-                                            
-
-                                        </select>
-
-                                    </div>
-                                </div>
-                                <div class="col-12" id="paymentdetails">
-                                    <div class="mb-1 row">
-                                        <div class="col-sm-3">
-                                            <label class="col-form-label text-danger" for="password">Cheque Details </label>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="PaymentDetails" class="form-control ">
+                                            <input type="text" name="ReceiverAddress" class="form-control ">
 
                                         </div>
                                     </div>
