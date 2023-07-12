@@ -232,24 +232,10 @@
                             <div class="col-md-6">
                                 <div class="mb-1 row">
                                     <div class="col-sm-3">
-                                        <label class="col-form-label" for="password">Customer </label>
+                                        <label class="col-form-label text-danger" for="password">Invoice # </label>
                                     </div>
                                     <div class="col-sm-9">
-                                        <select name="PartyID" id="PartyID" class="form-select select2 mt-5"   required="" style="width:100%;">
-                                            <option value="">Select</option>
-                                            <?php foreach ($party as $key => $value) : ?>
-                                                <option value="{{$value->PartyID}}">{{$value->PartyName}}</option>
-                                            <?php endforeach ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="mb-1 row " id="WalkinCustomer">
-                                    <div class="col-sm-3">
-                                        <label class="col-form-label text-danger" for="password">Walkin Customer </label>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="WalkinCustomerName" value="" placeholder="Walkin cusomter" id="1WalkinCustomerName" >
-
+                                         <div id="invoict_type"> <input type="text" name="InvoiceNo" autocomplete="off" class="form-control" value="INV-{{$vhno[0]->VHNO}}"></div>
                                     </div>
                                 </div>
                                 <div class="mb-1 row">
@@ -272,6 +258,34 @@
                                         <input type="text" name="Pcs" autocomplete="off" class="form-control">
                                     </div>
                                 </div>
+
+                                <div class=" mb-1 row">
+                                    <div class="col-sm-3">
+                                        <label class="col-form-label" for="password">Receiver Name</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                         <input type="text" name="ReceiverName" autocomplete="off" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class=" mb-1 row">
+                                    <div class="col-sm-3">
+                                        <label class="col-form-label" for="password">Receiver Address</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                         <input type="text" name="ReceiverAddress" autocomplete="off" class="form-control">
+                                    </div>
+                                </div>
+                                <div class=" mb-1 row">
+                                    <div class="col-sm-3">
+                                        <label class="col-form-label" for="password">Receiver Mob</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                         <input type="text" name="ReceiverMob" autocomplete="off" class="form-control">
+                                    </div>
+                                </div>
+
+
                                 <div class="mb-1 row">
                                     <div class="col-sm-3">
                                         <label class="col-form-label" for="password">Salesperson </label>
@@ -293,36 +307,8 @@
                                         <input type="text" name="ModeofShipment" autocomplete="off" class="form-control">
                                     </div>
                                 </div>
-                                <div class=" mb-1 row">
-                                    <div class="col-sm-3">
-                                        <label class="col-form-label" for="password">Receiver Name</label>
-                                    </div>
-                                    <div class="col-sm-9">
-                                         <input type="text" name="ReceiverName" autocomplete="off" class="form-control">
-                                    </div>
-                                </div>
-                                <div class=" mb-1 row">
-                                    <div class="col-sm-3">
-                                        <label class="col-form-label" for="password">Receiver Mob</label>
-                                    </div>
-                                    <div class="col-sm-9">
-                                         <input type="text" name="ReceiverMob" autocomplete="off" class="form-control">
-                                    </div>
-                                </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="col-12">
-                                    <div class="mb-1 row">
-                                        <div class="col-sm-3">
-                                            <label class="col-form-label text-danger" for="password">Invoice # </label>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <div id="invoict_type"> <input type="text" name="InvoiceNo" autocomplete="off" class="form-control" value="INV-{{$vhno[0]->VHNO}}"></div>
-
-
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="col-12">
                                     <div class="mb-1 row">
                                         <div class="col-sm-3">
@@ -354,6 +340,40 @@
                                         </div>
                                     </div>
                                 </div>  
+                                <div class="col-12" >
+                                    <div class="mb-1 row">
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label" for="password">Shipper Name</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="ShipperName" class="form-control ">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12" >
+                                    <div class="mb-1 row">
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label" for="password">Shipper Address </label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="ShipperAddress" class="form-control ">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12" >
+                                    <div class="mb-1 row">
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label" for="password">Shipper Mob </label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="ReceiverAddress" class="form-control ">
+
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="col-12">
                                     <div class="mb-1 row">
                                         <div class="col-sm-3">
@@ -378,17 +398,7 @@
                                      <input type="text" class="form-control" name="BookingNo" value=""  id="BookingNo" >
                                 </div>
                     </div>
-                                <div class="col-12" >
-                                    <div class="mb-1 row">
-                                        <div class="col-sm-3">
-                                            <label class="col-form-label" for="password">Receiver Address </label>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="ReceiverAddress" class="form-control ">
-
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
 
@@ -417,18 +427,11 @@ var i = $('table tr').length;
                                     </thead>
                                     <tbody>
                                         <tr class="p-3">
-                                          <td bordercolor="1" class="p-1    text-left" valign="top"><input class="case" type="checkbox" />-<script>document.write(i+1);</script></td>
+                                          <td bordercolor="1" class="p-1    text-left" valign="top"><input class="case" type="checkbox" /></td>
 
                                           <td valign="top">
-
-                                                <select name="ItemID0[]" id="ItemID0_1" class="item form-select  form-control-sm select2   changesNoo " onchange="km(this.value,1);" style="width: 300px !important;">
-                                                    <option value="">select</option>
-                                                    @foreach ($items as $key => $value)
-                                                    <option value="{{$value->ItemID}}">{{$value->ItemCode}}-{{$value->ItemName}}</option>
-                                                    @endforeach
-                                                </select>
-                                                <input type="hidden" name="ItemID[]" id="ItemID_1">
-                                          <textarea name="Description[]" id="Description[]" rows="2" class="form-control d-none" style="width: 300px !important;"></textarea></td>
+                                          <input type="text" name="Description[]" id="Description[]" rows="2" class="form-control" style="width: 300px !important;">
+                                            </td>
 
 
                                           <input type="hidden" name="Qty[]" id="Qty_1" class=" form-control changesNo QtyTotal" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" step="0.01" value="1">                                         
@@ -470,7 +473,7 @@ var i = $('table tr').length;
 
                         <div class="row mt-4">
 
-                            <div class="col-lg-6 col-12  ">
+                            <div class="col-lg-8 col-12  ">
                                 <h6>Customer Notes: </h6>
 
 
@@ -496,7 +499,7 @@ var i = $('table tr').length;
                             </div>
 
 
-                            <div class="col-lg-6 col-12 ">
+                            <div class="col-lg-4 col-12 ">
                                 <!-- <input type="text" class="form-control" id="TotalTaxAmount" name="TaxTotal" placeholder="TaxTotal" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"> -->
                                 <form class="form-inline">
                                    <!--  <div class="form-group mt-1">
@@ -669,8 +672,8 @@ var i = $('table tr').length;
     $(".addmore").on('click', function() {
          
         html = '<tr class= borde-1 border-light">';
-        html += '<td valign="top" class="p-1 text-left"><input class="case" type="checkbox"/>- ' + i+'</td>';
-        html += '<td><select name="ItemID0[]" id="ItemID0_' + i + '"  style="width: 300px !important;" class="form-select select2  changesNoo" onchange="km(this.value,' + i + ');" > <option value="">select</option>}@foreach ($items as $key => $value) <option value="{{$value->ItemID}}|{{$value->Percentage}}">{{$value->ItemCode}}-{{$value->ItemName}}-{{$value->Percentage}}</option>@endforeach</select><input type="hidden" name="ItemID[]" id="ItemID_' + i + '"> <textarea name="Description[]" id="Description[]" rows="2" class="form-control d-none" style="width: 300px !important;"></textarea></td>';
+        html += '<td valign="top" class="p-1 text-left"><input class="case" type="checkbox"/></td>';
+        html += '<td><input type="text" name="Description[]" id="Description[]" rows="2" class="form-control" style="width: 300px !important;"></td>';
 
 
 
