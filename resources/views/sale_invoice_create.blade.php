@@ -254,6 +254,26 @@
                                 </div>
                                 <div class="mb-1 row">
                                     <div class="col-sm-3">
+                                        <label class="col-form-label" for="password">Date</label> 
+                                    </div>
+
+                                    <div class="col-sm-9">                
+                                            <div class="input-group" id="datepicker21">
+                                                <input type="text" name="Date" autocomplete="off" class="form-control" placeholder="yyyy-mm-dd" data-date-format="yyyy-mm-dd" data-date-container="#datepicker21" data-provide="datepicker" data-date-autoclose="true" value="{{date('Y-m-d')}}">
+                                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="mb-1 row">
+                                    <div class="col-sm-3">
+                                        <label class="col-form-label" for="password">Pcs</label> 
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="Pcs" autocomplete="off" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="mb-1 row">
+                                    <div class="col-sm-3">
                                         <label class="col-form-label" for="password">Salesperson </label>
                                     </div>
                                     <div class="col-sm-9">
@@ -267,19 +287,10 @@
                                 </div>
                                 <div class="mb-1 row">
                                     <div class="col-sm-3">
-                                        <label class="col-form-label" for="password">Destination</label> 
-                                    </div>
-
-                                    <div class="col-sm-9">
-                                         <input type="text" id="Destination" class="form-control" name="Destination" value="" placeholder="Destination">
-                                    </div>
-                                </div>
-                                <div class=" mb-1 row">
-                                    <div class="col-sm-3">
-                                        <label class="col-form-label text-danger" for="password">Tracking Number</label>
+                                        <label class="col-form-label" for="password">Mode of Shipment</label> 
                                     </div>
                                     <div class="col-sm-9">
-                                         <input type="text" name="TrackingNumber" autocomplete="off" class="form-control">
+                                        <input type="text" name="ModeofShipment" autocomplete="off" class="form-control">
                                     </div>
                                 </div>
                                 <div class=" mb-1 row">
@@ -298,35 +309,15 @@
                                          <input type="text" name="ReceiverMob" autocomplete="off" class="form-control">
                                     </div>
                                 </div>
-
-
-
                             </div>
                             <div class="col-md-6">
-
-                                <div class="col-12">
-                                    <div class="mb-1 row">
-                                        <div class="col-sm-3">
-                                            <label class="col-form-label text-danger" for="password">Invoice Type </label>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <select name="InvoiceType" id="InvoiceType" class="form-select">
-                                                <?php foreach ($invoice_type as $key => $value) : ?>
-                                                    <option value="{{$value->InvoiceType}}">{{$value->InvoiceType}}</option>
-                                                <?php endforeach ?>
-                                            </select>
-
-                                        </div>
-
-                                    </div>
-                                </div>
                                 <div class="col-12">
                                     <div class="mb-1 row">
                                         <div class="col-sm-3">
                                             <label class="col-form-label text-danger" for="password">Invoice # </label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <div id="invoict_type"> <input type="text" name="InvoiceNo" autocomplete="off" class="form-control" value="TAX-{{$vhno[0]->VHNO}}"></div>
+                                            <div id="invoict_type"> <input type="text" name="InvoiceNo" autocomplete="off" class="form-control" value="INV-{{$vhno[0]->VHNO}}"></div>
 
 
                                         </div>
@@ -335,34 +326,56 @@
                                 <div class="col-12">
                                     <div class="mb-1 row">
                                         <div class="col-sm-3">
-                                            <label class="col-form-label" for="email-id">Date</label>
+                                            <label class="col-form-label text-danger" for="password">Tracking Number </label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <div class="input-group" id="datepicker21">
-                                                <input type="text" name="Date" autocomplete="off" class="form-control" placeholder="yyyy-mm-dd" data-date-format="yyyy-mm-dd" data-date-container="#datepicker21" data-provide="datepicker" data-date-autoclose="true" value="{{date('Y-m-d')}}">
-                                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
-                                            </div>
+                                            <input type="text" name="TrackingNumber" autocomplete="off" class="form-control">
+
+                                        </div>
+                                    </div>
+                                </div>       
+                                <div class="col-12">
+                                    <div class="mb-1 row">
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label" for="email-id">Destination</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                              <input type="text" id="Destination" class="form-control" name="Destination" value="" placeholder="Destination">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="mb-1 row">
                                         <div class="col-sm-3">
-                                            <label class="col-form-label" for="password">Pcs </label>
+                                            <label class="col-form-label" for="password">Total Weight </label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" name="Pcs" autocomplete="off" class="form-control">
-
+                                            <input type="text" class="form-control" name="TotalWeight" value="" placeholder="Total Weight" id="TotalWeight" >
+                                        </div>
+                                    </div>
+                                </div>  
+                                <div class="col-12">
+                                    <div class="mb-1 row">
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label" for="password">Rider</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <select name="UserID" id="UserID" class="form-select select2" style="width:100%;">
+                                            <option value="">Select</option>
+                                            <?php foreach ($user_rider as $key => $value) : ?>
+                                                <option value="{{$value->UserID}}">{{$value->FullName}}</option>
+                                            <?php endforeach ?>
+                                        </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mb-1 row">
                         <div class="col-sm-3">
-                            <label class="col-form-label" for="password">Total Weight</label> 
+                            <label class="col-form-label" for="password">Booking No</abel> 
                         </div>
 
                         <div class="col-sm-9">
-                             <input type="text" class="form-control" name="TotalWeight" value="" placeholder="Total Weight" id="TotalWeight" >
+                             <input type="text" class="form-control" name="BookingNo" value=""  id="BookingNo" >
                         </div>
                     </div>
                                 <div class="col-12" >

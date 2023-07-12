@@ -5951,6 +5951,8 @@ $pagetitle='Sales Invoice';
 
            // $tax = DB::table('tax')->get();
  $user = DB::table('user')->get();
+ $user_rider = DB::table('user')->where('UserType','Rider')->get();
+ 
  $invoice_type = DB::table('invoice_type')->get();
 
 
@@ -5965,7 +5967,7 @@ session::put('VHNO','TAX-'.$vhno[0]->VHNO);
  
 
  
-    return view ('sale_invoice_create',compact('invoice_type','items','vhno','party','pagetitle','item','user','tax','chartofaccount','payment_mode'));
+    return view ('sale_invoice_create',compact('invoice_type','items','vhno','party','pagetitle','item','user','tax','chartofaccount','payment_mode','user_rider'));
     }
 
 
