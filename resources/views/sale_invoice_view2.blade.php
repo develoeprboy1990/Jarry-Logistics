@@ -60,6 +60,10 @@
     .text-left {
       text-align: left;
     }
+
+    .td-color {
+      background-color: #252060
+    }
   </style>
 </head>
 
@@ -96,7 +100,7 @@
         <td>&nbsp;</td>
       </tr>
       <tr>
-        <td style="background-color: #454573; color:#e9e9e9;border:solid 1px #454573">
+        <td style=" color:#e9e9e9;border:solid 1px #454573" class="td-color">
           <h3> JARRY | 03349021704 </h3>
         </td>
         <td style="text-align:left;border:solid 1px #454573"> TRN. 100429315300003</td>
@@ -158,7 +162,7 @@
           <table width="100%" cellspacing="0">
 
             <tr>
-              <td colspan="2" style="background-color: #454573; color:#e9e9e9;border:solid 1px #454573">
+              <td colspan="2" style=" color:#e9e9e9;border:solid 1px #454573"  class="td-color">
                 <h3>CUSTOMER</h3>
               </td>
             </tr>
@@ -183,7 +187,7 @@
         <td>
           <table width="100%" cellspacing="0">
             <tr>
-              <td colspan="2" style="background-color: #454573; color:#e9e9e9;border:solid 1px #454573">
+              <td colspan="2" style="color:#e9e9e9;border:solid 1px #454573"  class="td-color">
                 <h3>DELIVERY / RECEIVER</h3>
               </td>
             </tr>
@@ -211,7 +215,7 @@
         <td>
           <table width="100%" cellspacing="0">
             <tr>
-              <td colspan="2" style="background-color: #454573; color:#e9e9e9;border:solid 1px #454573">
+              <td colspan="2" style=" color:#e9e9e9;border:solid 1px #454573" class="td-color">
                 <h3>CARGO DETAILS</h3>
               </td>
             </tr>
@@ -236,7 +240,7 @@
         <td>
           <table width="100%" cellspacing="0">
             <tr>
-              <td colspan="2" style="background-color: #454573; color:#e9e9e9;border:solid 1px #454573">
+              <td colspan="2" style=" color:#e9e9e9;border:solid 1px #454573" class="td-color">
                 <h3>CHARGES & PAYMENTS</h3>
               </td>
             </tr>
@@ -285,7 +289,7 @@
         <td colspan="2">
           <table width="100%" cellspacing="0">
             <tr>
-              <td colspan="2" style="background-color: #454573; color:#e9e9e9;border:solid 1px #454573;text-align:center">
+              <td colspan="2" style="color:#e9e9e9;border:solid 1px #454573;text-align:center"  class="td-color">
                 <h3>CUSTOMER DECLARATION</h3>
               </td>
             </tr>
