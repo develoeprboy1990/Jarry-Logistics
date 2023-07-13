@@ -6228,7 +6228,7 @@ class Accounts extends Controller
 
 
     session()->forget('VHNO');
-    session::put('VHNO', $invoice_master[0]->InvoiceNo);
+    //session::put('VHNO', $invoice_master[0]->InvoiceNo);
 
     return view('sale_invoice_view2', compact('invoice_type', 'items', 'vhno', 'party', 'pagetitle', 'item', 'user', 'invoice_master', 'invoice_detail', 'company'));
   }
