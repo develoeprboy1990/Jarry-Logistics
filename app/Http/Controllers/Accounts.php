@@ -5644,9 +5644,41 @@ class Accounts extends Controller
 
   public  function SaleInvoiceSave(request $request)
   {
+
+
+    $invoice_party = array(
+      'InvoiceNo' => $request->InvoiceNo,
+      'InvoiceType' => 'Invoice',
+      'Date' => $request->Date,
+      'DueDate' => $request->DueDate,
+      'PartyID' => $request->PartyID,
+      'WalkinCustomerName' => $request->WalkinCustomerName,
+      'ReferenceNo' => $request->ReferenceNo,
+      'PaymentMode' => $request->PaymentMode,
+      'PaymentDetails' => $request->PaymentDetails,
+      'Subject' => $request->Subject,
+      'SubTotal' => $request->SubTotal,
+      'DiscountPer' => $request->DiscountPer,
+      'DiscountAmount' => $request->DiscountAmount,
+      'Total' => $request->Total,
+      'TaxType' => $request->TaxType,
+      'TaxPer' => $request->Taxpercentage,
+      'Tax' => '0',//$request->grandtotaltax,
+      'Shipping' => $request->Shipping,
+      'GrandTotal' => $request->Grandtotal,
+      'Paid' => $request->amountPaid,
+      'Balance' => $request->amountDue,
+      'CustomerNotes' => $request->CustomerNotes,
+      'DescriptionNotes' => $request->DescriptionNotes,
+      'UserID' => session::get('UserID'),
+    );
+
+    $InvoiceMasterID = DB::table('invoice_master')->insertGetId($invoice_mst);
+
+
     $invoice_mst = array(
       'InvoiceNo' => $request->InvoiceNo,
-      'InvoiceType' => $request->InvoiceType,
+      'InvoiceType' => 'Invoice',
       'Date' => $request->Date,
       'DueDate' => $request->DueDate,
       'PartyID' => $request->PartyID,

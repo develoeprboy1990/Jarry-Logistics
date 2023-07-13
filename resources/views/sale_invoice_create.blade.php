@@ -255,30 +255,28 @@
 
                                 <div class=" mb-1 row">
                                     <div class="col-sm-3">
-                                        <label class="col-form-label" for="password">Receiver Name</label>
+                                        <label class="col-form-label">Shipper Name</label>
                                     </div>
                                     <div class="col-sm-9">
-                                         <input type="text" name="ReceiverName" autocomplete="off" class="form-control">
-                                    </div>
-                                </div>
-
-                                <div class=" mb-1 row">
-                                    <div class="col-sm-3">
-                                        <label class="col-form-label" for="password">Receiver Address</label>
-                                    </div>
-                                    <div class="col-sm-9">
-                                         <input type="text" name="ReceiverAddress" autocomplete="off" class="form-control">
+                                         <input type="text" name="ShipperName" autocomplete="off" class="form-control">
                                     </div>
                                 </div>
                                 <div class=" mb-1 row">
                                     <div class="col-sm-3">
-                                        <label class="col-form-label" for="password">Receiver Mob</label>
+                                        <label class="col-form-label">Shipper Address</label>
                                     </div>
                                     <div class="col-sm-9">
-                                         <input type="text" name="ReceiverMob" autocomplete="off" class="form-control">
+                                         <input type="text" name="ShipperAddress" autocomplete="off" class="form-control">
                                     </div>
                                 </div>
-
+                                <div class=" mb-1 row">
+                                    <div class="col-sm-3">
+                                        <label class="col-form-label">Shipper Mob</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                         <input type="text" name="ShipperMob" autocomplete="off" class="form-control">
+                                    </div>
+                                </div>
 
                                 <div class="mb-1 row">
                                     <div class="col-sm-3">
@@ -337,10 +335,10 @@
                                 <div class="col-12" >
                                     <div class="mb-1 row">
                                         <div class="col-sm-3">
-                                            <label class="col-form-label" for="password">Shipper Name</label>
+                                            <label class="col-form-label">Receiver Name</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" name="ShipperName" class="form-control ">
+                                            <input type="text" name="ReceiverName" class="form-control ">
 
                                         </div>
                                     </div>
@@ -348,21 +346,21 @@
                                 <div class="col-12" >
                                     <div class="mb-1 row">
                                         <div class="col-sm-3">
-                                            <label class="col-form-label" for="password">Shipper Address </label>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="ShipperAddress" class="form-control ">
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12" >
-                                    <div class="mb-1 row">
-                                        <div class="col-sm-3">
-                                            <label class="col-form-label" for="password">Shipper Mob </label>
+                                            <label class="col-form-label" for="password">Receiver Address </label>
                                         </div>
                                         <div class="col-sm-9">
                                             <input type="text" name="ReceiverAddress" class="form-control ">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12" >
+                                    <div class="mb-1 row">
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label" for="password">Receiver Mob </label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="ReceiverMob" class="form-control ">
 
                                         </div>
                                     </div>
