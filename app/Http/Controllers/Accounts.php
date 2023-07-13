@@ -5618,7 +5618,7 @@ class Accounts extends Controller
 
     // $tax = DB::table('tax')->get();
     $user = DB::table('user')->get();
-    $user_rider = DB::table('user')->where('UserType','Rider')->get();
+    $user_rider = DB::table('user')->where('UserType', 'Rider')->get();
     $invoice_type = DB::table('invoice_type')->get();
 
 
@@ -5633,7 +5633,7 @@ class Accounts extends Controller
 
 
 
-    return view('sale_invoice_create', compact('invoice_type', 'items', 'vhno', 'party', 'pagetitle', 'item', 'user', 'tax', 'chartofaccount', 'payment_mode','user_rider'));
+    return view('sale_invoice_create', compact('invoice_type', 'items', 'vhno', 'party', 'pagetitle', 'item', 'user', 'tax', 'chartofaccount', 'payment_mode', 'user_rider'));
   }
 
 
@@ -5646,43 +5646,35 @@ class Accounts extends Controller
   {
 
 
-    $invoice_party = array(
-      'InvoiceNo' => $request->InvoiceNo,
-      'InvoiceType' => 'Invoice',
-      'Date' => $request->Date,
-      'DueDate' => $request->DueDate,
-      'PartyID' => $request->PartyID,
-      'WalkinCustomerName' => $request->WalkinCustomerName,
-      'ReferenceNo' => $request->ReferenceNo,
-      'PaymentMode' => $request->PaymentMode,
-      'PaymentDetails' => $request->PaymentDetails,
-      'Subject' => $request->Subject,
-      'SubTotal' => $request->SubTotal,
-      'DiscountPer' => $request->DiscountPer,
-      'DiscountAmount' => $request->DiscountAmount,
-      'Total' => $request->Total,
-      'TaxType' => $request->TaxType,
-      'TaxPer' => $request->Taxpercentage,
-      'Tax' => '0',//$request->grandtotaltax,
-      'Shipping' => $request->Shipping,
-      'GrandTotal' => $request->Grandtotal,
-      'Paid' => $request->amountPaid,
-      'Balance' => $request->amountDue,
-      'CustomerNotes' => $request->CustomerNotes,
-      'DescriptionNotes' => $request->DescriptionNotes,
-      'UserID' => session::get('UserID'),
-    );
-
-    $InvoiceMasterID = DB::table('invoice_master')->insertGetId($invoice_mst);
-
-
     $invoice_mst = array(
       'InvoiceNo' => $request->InvoiceNo,
       'InvoiceType' => 'Invoice',
       'Date' => $request->Date,
       'DueDate' => $request->DueDate,
       'PartyID' => $request->PartyID,
-      'WalkinCustomerName' => $request->WalkinCustomerName,
+      'Pcs' => $request->Pcs,
+      'WalkinCustomerName' => $request->customer,
+      'mobile_number' => $request->mobile_number,
+      'sender' => $request->sender,
+      'phone' => $request->phone,
+      'state' => $request->state,
+      'DocType' => $request->DocType,
+      'DocNo' => $request->DocNo,
+      'address' => $request->address,
+      'TrackingNumber' => $request->TrackingNumber,
+      'Destination' => $request->Destination,
+      'TotalWeight' => $request->TotalWeight,
+      'ReceiverName' => $request->ReceiverName,
+      'ReceiverMob' => $request->ReceiverMob,
+      'ReceiverDocType' => $request->ReceiverDocType,
+      'ReceiverDocNo' => $request->ReceiverDocNo,
+      'ReceiverAddress' => $request->ReceiverAddress,
+      'BookingNo' => $request->BookingNo,
+      'ModeofShipment' => $request->ModeofShipment,
+      'DocumentFees' => $request->DocumentFees,
+      'Insurance' => $request->Insurance,
+      'PackingFee' => $request->PackingFee,
+      'TransportationCharges' => $request->TransportationCharges,
       'ReferenceNo' => $request->ReferenceNo,
       'PaymentMode' => $request->PaymentMode,
       'PaymentDetails' => $request->PaymentDetails,
@@ -5693,61 +5685,57 @@ class Accounts extends Controller
       'Total' => $request->Total,
       'TaxType' => $request->TaxType,
       'TaxPer' => $request->Taxpercentage,
-      'Tax' => '0',//$request->grandtotaltax,
+      'Tax' => '0', //$request->grandtotaltax,
       'Shipping' => $request->Shipping,
       'GrandTotal' => $request->Grandtotal,
-      'Paid' => $request->amountPaid,
+      'Paid' => $request->Grandtotal,
       'Balance' => $request->amountDue,
       'CustomerNotes' => $request->CustomerNotes,
       'DescriptionNotes' => $request->DescriptionNotes,
       'UserID' => session::get('UserID'),
     );
-
     $InvoiceMasterID = DB::table('invoice_master')->insertGetId($invoice_mst);
     // END OF SALE RETURN
-
-    //  start for item array from invoice
-    for ($i = 0; $i < count($request->Description); $i++) {
-      $invoice_det = array(
-        'InvoiceMasterID' =>  $InvoiceMasterID,
-        'InvoiceNo' => $request->InvoiceNo,
-        'ItemID' => $request->ItemID[$i],
-        'PartyID' => $request->input('PartyID'),
-        'Qty' => $request->Qty[$i],
-        'Description' => $request->Description[$i],
-        'TaxPer' => 2,// $request->Tax[$i],
-        'Tax' => 0,//$request->TaxVal[$i],
-        'Rate' => $request->Price[$i],
-        'Total' => $request->ItemTotal[$i],
-        'Discount' => $request->Discount[$i],
-        'DiscountType' => $request->DiscountType[$i],
-        'Gross' => $request->Gross[$i],
-        'DiscountAmountItem' => 0//$request->DiscountAmountItem[$i],
-      );
-
-      $id = DB::table('invoice_detail')->insertGetId($invoice_det);
+    if (!empty($request->Description)) {
+      for ($i = 0; $i < count($request->Description); $i++) {
+        $invoice_det = array(
+          'InvoiceMasterID'    => $InvoiceMasterID,
+          'InvoiceNo'          => $request->InvoiceNo,
+          'ItemID'             => 0, //$request->ItemID[$i],
+          'PartyID'            => $request->input('PartyID'),
+          'Qty'                => $request->Qty[$i],
+          'Weight'             => $request->Weight[$i],
+          'Freight'            => $request->Freight[$i],
+          'Description'        => $request->Description[$i],
+          'TaxPer'             => 2,
+          'Tax'                => $request->Vat[$i],
+          'Rate'               => $request->Price[$i],
+          'Total'              => $request->Price[$i],
+          'Discount'           => $request->Discount[$i],
+          'DiscountType'       => $request->DiscountType[$i],
+          'Gross'              => $request->Gross[$i],
+          'DiscountAmountItem' => 0
+        );
+        $id = DB::table('invoice_detail')->insertGetId($invoice_det);
+      }
     }
-
     // end foreach
-
-
     // Journal Entries 
 
     // 1. A/R
 
     // A/R -> Debit
     $data_ar = array(
-      'VHNO' => $request->input('InvoiceNo'),
+      'VHNO'             => $request->input('InvoiceNo'),
       'ChartOfAccountID' => '110400',   //A/R
-      'PartyID' => $request->input('PartyID'),
-      'InvoiceMasterID' => $InvoiceMasterID, #7A7A7A
-      'Narration' => $request->input('Subject'),
-      'Date' => $request->input('Date'),
-      'Dr' => $request->input('Grandtotal'),
-      'Trace' => 123, // for debugging for reverse engineering
+      'PartyID'          => $request->input('PartyID'),
+      'InvoiceMasterID'  => $InvoiceMasterID, #7A7A7A
+      'Narration'        => $request->input('Subject'),
+      'Date'             => $request->input('Date'),
+      'Dr'               => $request->input('Grandtotal'),
+      'Trace'            => 123, // for debugging for reverse engineering
 
     );
-
     $journal_entry = DB::table('journal')->insertGetId($data_ar);
 
     // 2. Sale discount
@@ -5755,8 +5743,6 @@ class Accounts extends Controller
     // Sales-Discount -> Debit
 
     if ($request->input('DiscountAmount') > 0) { // if dis is given
-
-
       $data_saledis = array(
         'VHNO' => $request->input('InvoiceNo'),
         'ChartOfAccountID' => '410155',   //Sales-Discount
@@ -5768,25 +5754,22 @@ class Accounts extends Controller
         'Trace' => 1234, // for debugging for reverse engineering
 
       );
-
-
       $journal_entry = DB::table('journal')->insertGetId($data_saledis);
     }
     // 3. sales
 
     // Sales -> Credit
     $data_sale = array(
-      'VHNO' => $request->input('InvoiceNo'),
+      'VHNO'             => $request->input('InvoiceNo'),
       'ChartOfAccountID' => '410100',   //Sales
-      'PartyID' => $request->input('PartyID'),
-      'InvoiceMasterID' => $InvoiceMasterID, #7A7A7A
-      'Narration' => $request->input('Subject'),
-      'Date' => $request->input('Date'),
-      'Cr' => $request->input('SubTotal'),
-      'Trace' => 12345, // for debugging for reverse engineering
+      'PartyID'          => $request->input('PartyID'),
+      'InvoiceMasterID'  => $InvoiceMasterID, #7A7A7A
+      'Narration'        => $request->input('Subject'),
+      'Date'             => $request->input('Date'),
+      'Cr'               => $request->input('SubTotal'),
+      'Trace'            => 12345, // for debugging for reverse engineering
 
     );
-
     $journal_entry = DB::table('journal')->insertGetId($data_sale);
 
     // 4. Tax -> VAT-OUTPUT TAX -> tax payable
