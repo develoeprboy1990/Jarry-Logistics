@@ -217,41 +217,69 @@
     <div class="page-content">
         <div class="container-fluid">
             <!-- start page title -->
-
             <!-- enctype="multipart/form-data" -->
             <form action="{{URL('/SaleInvoiceSave')}}" method="post">
-
-
                 <input type="hidden" name="_token" id="csrf" value="{{Session::token()}}">
-
-
                 <div class="card shadow-sm">
                     <div class="card-body">
-
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-1 row">
                                     <div class="col-sm-3">
-                                        <label class="col-form-label" for="password">Customer </label>
+                                        <label class="col-form-label text-danger" for="password">Invoice # </label>
                                     </div>
                                     <div class="col-sm-9">
-                                        <select name="PartyID" id="PartyID" class="form-select select2 mt-5"   required="" style="width:100%;">
-                                            <option value="">Select</option>
-                                            <?php foreach ($party as $key => $value) : ?>
-                                                <option value="{{$value->PartyID}}">{{$value->PartyName}}</option>
-                                            <?php endforeach ?>
-                                        </select>
+                                         <div id="invoict_type"> <input type="text" name="InvoiceNo" autocomplete="off" class="form-control" value="INV-{{$vhno[0]->VHNO}}"></div>
                                     </div>
                                 </div>
-                                <div class="mb-1 row " id="WalkinCustomer">
+                                <div class="mb-1 row">
                                     <div class="col-sm-3">
-                                        <label class="col-form-label text-danger" for="password">Walkin Customer </label>
+                                        <label class="col-form-label" for="password">Date</label> 
                                     </div>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="WalkinCustomerName" value="" placeholder="Walkin cusomter" id="1WalkinCustomerName" >
 
+                                    <div class="col-sm-9">                
+                                            <div class="input-group" id="datepicker21">
+                                                <input type="text" name="Date" autocomplete="off" class="form-control" placeholder="yyyy-mm-dd" data-date-format="yyyy-mm-dd" data-date-container="#datepicker21" data-provide="datepicker" data-date-autoclose="true" value="{{date('Y-m-d')}}">
+                                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                                            </div>
                                     </div>
                                 </div>
+                                <div class="mb-1 row">
+                                    <div class="col-sm-3">
+                                        <label class="col-form-label" for="password">Pcs</label> 
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="Pcs" autocomplete="off" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class=" mb-1 row">
+                                    <div class="col-sm-3">
+                                        <label class="col-form-label" for="password">Receiver Name</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                         <input type="text" name="ReceiverName" autocomplete="off" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class=" mb-1 row">
+                                    <div class="col-sm-3">
+                                        <label class="col-form-label" for="password">Receiver Address</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                         <input type="text" name="ReceiverAddress" autocomplete="off" class="form-control">
+                                    </div>
+                                </div>
+                                <div class=" mb-1 row">
+                                    <div class="col-sm-3">
+                                        <label class="col-form-label" for="password">Receiver Mob</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                         <input type="text" name="ReceiverMob" autocomplete="off" class="form-control">
+                                    </div>
+                                </div>
+
+
                                 <div class="mb-1 row">
                                     <div class="col-sm-3">
                                         <label class="col-form-label" for="password">Salesperson </label>
@@ -267,108 +295,71 @@
                                 </div>
                                 <div class="mb-1 row">
                                     <div class="col-sm-3">
-                                        <label class="col-form-label" for="password">Destination</label> 
-                                    </div>
-
-                                    <div class="col-sm-9">
-                                         <input type="text" id="Destination" class="form-control" name="Destination" value="" placeholder="Destination">
-                                    </div>
-                                </div>
-                                <div class=" mb-1 row">
-                                    <div class="col-sm-3">
-                                        <label class="col-form-label text-danger" for="password">Tracking Number</label>
+                                        <label class="col-form-label" for="password">Mode of Shipment</label> 
                                     </div>
                                     <div class="col-sm-9">
-                                         <input type="text" name="TrackingNumber" autocomplete="off" class="form-control">
+                                        <input type="text" name="ModeofShipment" autocomplete="off" class="form-control">
                                     </div>
                                 </div>
-                                <div class=" mb-1 row">
-                                    <div class="col-sm-3">
-                                        <label class="col-form-label" for="password">Receiver Name</label>
-                                    </div>
-                                    <div class="col-sm-9">
-                                         <input type="text" name="ReceiverName" autocomplete="off" class="form-control">
-                                    </div>
-                                </div>
-                                <div class=" mb-1 row">
-                                    <div class="col-sm-3">
-                                        <label class="col-form-label" for="password">Receiver Mob</label>
-                                    </div>
-                                    <div class="col-sm-9">
-                                         <input type="text" name="ReceiverMob" autocomplete="off" class="form-control">
-                                    </div>
-                                </div>
-
-
-
                             </div>
                             <div class="col-md-6">
-
                                 <div class="col-12">
                                     <div class="mb-1 row">
                                         <div class="col-sm-3">
-                                            <label class="col-form-label text-danger" for="password">Invoice Type </label>
+                                            <label class="col-form-label text-danger" for="password">Tracking Number </label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <select name="InvoiceType" id="InvoiceType" class="form-select">
-                                                <?php foreach ($invoice_type as $key => $value) : ?>
-                                                    <option value="{{$value->InvoiceType}}">{{$value->InvoiceType}}</option>
-                                                <?php endforeach ?>
-                                            </select>
+                                            <input type="text" name="TrackingNumber" autocomplete="off" class="form-control">
 
                                         </div>
-
                                     </div>
-                                </div>
+                                </div>       
                                 <div class="col-12">
                                     <div class="mb-1 row">
                                         <div class="col-sm-3">
-                                            <label class="col-form-label text-danger" for="password">Invoice # </label>
+                                            <label class="col-form-label" for="email-id">Destination</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <div id="invoict_type"> <input type="text" name="InvoiceNo" autocomplete="off" class="form-control" value="TAX-{{$vhno[0]->VHNO}}"></div>
-
-
+                                              <input type="text" id="Destination" class="form-control" name="Destination" value="" placeholder="Destination">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="mb-1 row">
                                         <div class="col-sm-3">
-                                            <label class="col-form-label" for="email-id">Date</label>
+                                            <label class="col-form-label" for="password">Total Weight </label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <div class="input-group" id="datepicker21">
-                                                <input type="text" name="Date" autocomplete="off" class="form-control" placeholder="yyyy-mm-dd" data-date-format="yyyy-mm-dd" data-date-container="#datepicker21" data-provide="datepicker" data-date-autoclose="true" value="{{date('Y-m-d')}}">
-                                                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
-                                            </div>
+                                            <input type="text" class="form-control" name="TotalWeight" value="" placeholder="Total Weight" id="TotalWeight" >
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="mb-1 row">
-                                        <div class="col-sm-3">
-                                            <label class="col-form-label" for="password">Pcs </label>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="Pcs" autocomplete="off" class="form-control">
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb-1 row">
-                        <div class="col-sm-3">
-                            <label class="col-form-label" for="password">Total Weight</label> 
-                        </div>
-
-                        <div class="col-sm-9">
-                             <input type="text" class="form-control" name="TotalWeight" value="" placeholder="Total Weight" id="TotalWeight" >
-                        </div>
-                    </div>
+                                </div>  
                                 <div class="col-12" >
                                     <div class="mb-1 row">
                                         <div class="col-sm-3">
-                                            <label class="col-form-label" for="password">Receiver Address </label>
+                                            <label class="col-form-label" for="password">Shipper Name</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="ShipperName" class="form-control ">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12" >
+                                    <div class="mb-1 row">
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label" for="password">Shipper Address </label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="ShipperAddress" class="form-control ">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12" >
+                                    <div class="mb-1 row">
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label" for="password">Shipper Mob </label>
                                         </div>
                                         <div class="col-sm-9">
                                             <input type="text" name="ReceiverAddress" class="form-control ">
@@ -376,16 +367,38 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-12">
+                                    <div class="mb-1 row">
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label" for="password">Rider</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <select name="UserID" id="UserID" class="form-select select2" style="width:100%;">
+                                            <option value="">Select</option>
+                                            <?php foreach ($user_rider as $key => $value) : ?>
+                                                <option value="{{$value->UserID}}">{{$value->FullName}}</option>
+                                            <?php endforeach ?>
+                                        </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-1 row">
+                                <div class="col-sm-3">
+                                    <label class="col-form-label" for="password">
+                                    Booking No</label> 
+                                </div>
+                                <div class="col-sm-9">
+                                     <input type="text" class="form-control" name="BookingNo" value=""  id="BookingNo" >
+                                </div>
+                    </div>
+                                
                             </div>
                         </div>
-
-<script>
-     var i = $('table tr').length;
+                        <script>
+var i = $('table tr').length;
 </script>
-
-
                         <hr class="invoice-spacing">
-
                         <div class='text-center'>
 
                         </div>
@@ -400,27 +413,15 @@
                                             <th width="2%">FREIGHT</th>
                                             <th width="2%">VAT</th>
                                             <th width="2%">TOTAL</th>
-                                            <!-- <th width="2%">DISCOUNT</th> 
-                                            <th width="2%">Value for Tax</th>
-                                            <th width="2%">Tax</th>
-                                            <th width="2%">Tax Val</th>
-                                            <th width="4%">AMOUNT</th>-->
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr class="p-3">
-                                          <td bordercolor="1" class="p-1    text-left" valign="top"><input class="case" type="checkbox" />-<script>document.write(i+1);</script></td>
+                                          <td bordercolor="1" class="p-1    text-left" valign="top"><input class="case" type="checkbox" /></td>
 
                                           <td valign="top">
-
-                                                <select name="ItemID0[]" id="ItemID0_1" class="item form-select  form-control-sm select2   changesNoo " onchange="km(this.value,1);" style="width: 300px !important;">
-                                                    <option value="">select</option>
-                                                    @foreach ($items as $key => $value)
-                                                    <option value="{{$value->ItemID}}">{{$value->ItemCode}}-{{$value->ItemName}}</option>
-                                                    @endforeach
-                                                </select>
-                                                <input type="hidden" name="ItemID[]" id="ItemID_1">
-                                          <textarea name="Description[]" id="Description[]" rows="2" class="form-control d-none" style="width: 300px !important;"></textarea></td>
+                                          <input type="text" name="Description[]" id="Description[]" rows="2" class="form-control" style="width: 300px !important;">
+                                            </td>
 
 
                                           <input type="hidden" name="Qty[]" id="Qty_1" class=" form-control changesNo QtyTotal" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" step="0.01" value="1">                                         
@@ -458,8 +459,6 @@
 
                         
                         </div>
-
-
                         <div class="row mt-4">
 
                             <div class="col-lg-8 col-12  ">
@@ -499,150 +498,126 @@
                                             <input type="text" class="form-control" id="grandtotaltax" name="grandtotaltax" placeholder="Subtotal" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                         </div>
                                     </div> -->
-                                    <div class="form-group mt-1">
-                                        <label>TOTAL AMOUNT: &nbsp;</label>
-                                        <div class="input-group">
+
+                                    <div class="col-12">
+                                    <div class="mb-1 row">
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label" >TOTAL AMOUNT: &nbsp;</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="input-group">
                                             <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
 
                                             <input type="text" class="form-control" id="subTotal" name="SubTotal" placeholder="Subtotal" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                         </div>
+                                        </div>
                                     </div>
+                                </div>
                                     
-                                    <div class="form-group mt-1">
-                                        <label>DOCUMNETS FEES: &nbsp;</label>
+                                        <div class="col-12">
+                                    <div class="mb-1 row">
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label" >DOCUMNETS FEES: &nbsp;</label>
+                                        </div>
+                                        <div class="col-sm-9">
                                         <div class="input-group">
                                             <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
 
                                             <input type="text" class="form-control" id="DocumentFees" name="DocumentFees"  onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                         </div>
+                                        </div>
                                     </div>
+                                </div>
                                     
 
-                                    <div class="form-group mt-1">
-                                        <label>INSURANCE: &nbsp;</label>
+                                        <div class="col-12">
+                                    <div class="mb-1 row">
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label" >INSURANCE: &nbsp;</label>
+                                        </div>
+                                        <div class="col-sm-9">
                                         <div class="input-group">
                                             <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
 
                                             <input type="text" class="form-control" id="Insurance" name="Insurance"  onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                         </div>
+                                        </div>
                                     </div>
+                                </div>
                                     
 
-                                    <div class="form-group mt-1">
-                                        <label>WOODEN BOX / PACKING FEES: &nbsp;</label>
+
+                                        <div class="col-12">
+                                    <div class="mb-1 row">
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label" >WOODEN BOX / PACKING FEES: &nbsp;</label>
+                                        </div>
+                                        <div class="col-sm-9">
                                         <div class="input-group">
                                             <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
 
                                             <input type="text" class="form-control" id="PackingFee" name="PackingFee" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                         </div>
+                                        </div>
                                     </div>
+                                </div>
+                                    
 
-                                    <div class="form-group mt-1">
-                                        <label>TRANSPORTATION CHARGES: &nbsp;</label>
+                                        <div class="col-12">
+                                    <div class="mb-1 row">
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label" >TRANSPORTATION CHARGES: &nbsp;</label>
+                                        </div>
+                                        <div class="col-sm-9">
                                         <div class="input-group">
                                             <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
 
                                             <input type="text" class="form-control" id="TransportationCharges" name="TransportationCharges" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                         </div>
+                                        </div>
                                     </div>
-
-                                    <div class="form-group mt-1">
-                                        <label>TOTAL VAT: &nbsp;</label>
+                                </div>
+                                    
+                                    
+                                        <div class="col-12">
+                                    <div class="mb-1 row">
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label" >TOTAL VAT: &nbsp;</label>
+                                        </div>
+                                        <div class="col-sm-9">
                                         <div class="input-group">
                                             <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
 
                                             <input type="text" class="form-control" id="TotalVat" name="TotalVat" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                         </div>
+                                        </div>
                                     </div>
+                                </div>
                                     
+
+
+
                                     
-
-                                    <!-- <div class="form-group mt-1">
-                                        <label>Discount: &nbsp;</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text bg-light">%</span>
-
-                                            <input type="text" class="form-control" value="0" id="discountper" name="DiscountPer" placeholder="Tax" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" >
-
-                                            <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
-
-                                            <input type="text" name="DiscountAmount" class="form-control" id="discountAmount" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" value="0">
+                                        <div class="col-12">
+                                    <div class="mb-1 row">
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label" >Grand Total: &nbsp;</label>
                                         </div>
-                                    </div> -->
-
-
-
-                                    <!-- <div class="form-group mt-1">
-
-                                        <label>Total: &nbsp;</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
-                                            <input type="number" name="Total" id="Total" class="form-control" step="0.01" id="totalafterdisc"   placeholder="Total" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
-                                        </div>
-                                    </div> -->
-                               
-
-                                    <!-- <div class="form-group mt-1 d-none">
-
-                                        <label>Shipping: &nbsp;</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
-                                            <input type="number" name="Shipping" class="form-control" step="0.01" id="shipping" placeholder="Grand Total" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" value="0">
-                                        </div>
-                                    </div> -->
-
-                                    <div class="form-group mt-1">
-
-                                        <label>Grand Total: &nbsp;</label>
+                                        <div class="col-sm-9">
                                         <div class="input-group">
                                             <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
                                             <input type="number" name="Grandtotal"  id="Grandtotal" class="form-control" step="0.01" id="grandtotal" placeholder="Grand Total"   onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" value="0">
                                         </div>
-                                    </div>
-
-
-
-                                    <!-- <div class="form-group mt-1 d-none">
-                                        <label>Amount Paid: &nbsp;</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
-                                            <input type="number" class="form-control" id="amountPaid" name="amountPaid" placeholder="Amount Paid" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" step="0.01" value="0">
                                         </div>
                                     </div>
-
-                                    <div class="form-group mt-1 d-none">
-
-                                        <label>Amount Due: &nbsp;</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
-                                            <input type="number" class="form-control amountDue" name="amountDue" id="amountDue" placeholder="Amount Due" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" step="0.01">
-                                        </div>
-                                    </div> -->
-
+                                </div>
+                                    
+                                    
                             </div>
                         </div>
-                        <div>
-
-
-
-                        </div>
-
-
-
-
-
+                    </div>
+                </div>
             </form>
-
-            <!--  <div class='row'>
-          <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
-            <div class="well text-center">
-          <h2>Back TO Tutorial: <a href="#"> Invoice System </a> </h2>
-        </div>
-          </div>
-        </div>   -->
-
-
-
         </div>
     </div>
 </div>
@@ -666,8 +641,8 @@
     $(".addmore").on('click', function() {
          
         html = '<tr class= borde-1 border-light">';
-        html += '<td valign="top" class="p-1 text-left"><input class="case" type="checkbox"/>- ' + i+'</td>';
-        html += '<td><select name="ItemID0[]" id="ItemID0_' + i + '"  style="width: 300px !important;" class="form-select select2  changesNoo" onchange="km(this.value,' + i + ');" > <option value="">select</option>}@foreach ($items as $key => $value) <option value="{{$value->ItemID}}|{{$value->Percentage}}">{{$value->ItemCode}}-{{$value->ItemName}}-{{$value->Percentage}}</option>@endforeach</select><input type="hidden" name="ItemID[]" id="ItemID_' + i + '"> <textarea name="Description[]" id="Description[]" rows="2" class="form-control d-none" style="width: 300px !important;"></textarea></td>';
+        html += '<td valign="top" class="p-1 text-left"><input class="case" type="checkbox"/></td>';
+        html += '<td><input type="text" name="Description[]" id="Description[]" rows="2" class="form-control" style="width: 300px !important;"></td>';
 
 
 

@@ -5618,6 +5618,7 @@ class Accounts extends Controller
 
     // $tax = DB::table('tax')->get();
     $user = DB::table('user')->get();
+    $user_rider = DB::table('user')->where('UserType','Rider')->get();
     $invoice_type = DB::table('invoice_type')->get();
 
 
@@ -5632,7 +5633,7 @@ class Accounts extends Controller
 
 
 
-    return view('sale_invoice_create', compact('invoice_type', 'items', 'vhno', 'party', 'pagetitle', 'item', 'user', 'tax', 'chartofaccount', 'payment_mode'));
+    return view('sale_invoice_create', compact('invoice_type', 'items', 'vhno', 'party', 'pagetitle', 'item', 'user', 'tax', 'chartofaccount', 'payment_mode','user_rider'));
   }
 
 
@@ -5674,7 +5675,7 @@ class Accounts extends Controller
     // END OF SALE RETURN
 
     //  start for item array from invoice
-    for ($i = 0; $i < count($request->ItemID); $i++) {
+    for ($i = 0; $i < count($request->Description); $i++) {
       $invoice_det = array(
         'InvoiceMasterID' =>  $InvoiceMasterID,
         'InvoiceNo' => $request->InvoiceNo,
@@ -5690,10 +5691,6 @@ class Accounts extends Controller
         'DiscountType' => $request->DiscountType[$i],
         'Gross' => $request->Gross[$i],
         'DiscountAmountItem' => 0//$request->DiscountAmountItem[$i],
-
-
-
-
       );
 
       $id = DB::table('invoice_detail')->insertGetId($invoice_det);
@@ -6058,7 +6055,6 @@ class Accounts extends Controller
 
       );
 
-
       $journal_entry = DB::table('journal')->insertGetId($data_saledis);
     }
     // 3. sales
@@ -6075,6 +6071,7 @@ class Accounts extends Controller
       'Trace' => 12345, // for debugging for reverse engineering
 
     );
+
 
     $journal_entry = DB::table('journal')->insertGetId($data_sale);
 
