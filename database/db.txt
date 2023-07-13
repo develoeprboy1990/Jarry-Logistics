@@ -10,3 +10,10 @@ ALTER TABLE `invoice_master` ADD `DocumentFees` DOUBLE(8,2) NULL DEFAULT NULL AF
 ALTER TABLE `invoice_master` ADD `Destination` VARCHAR(255) NULL DEFAULT NULL AFTER `Date`, ADD `Pcs` VARCHAR(255) NULL DEFAULT NULL AFTER `Destination`, ADD `TotalWeight` VARCHAR(255) NULL DEFAULT NULL AFTER `Pcs`;
 
 ALTER TABLE `invoice_master` ADD `TrackingNumber` VARCHAR(255) NULL AFTER `InvoiceType`;
+
+==============================================================================================================
+13-07-2023
+ALTER TABLE `invoice_master` ADD `sender` TINYTEXT NULL AFTER `WalkinCustomerName`, ADD `phone` TINYTEXT NULL AFTER `sender`, ADD `state` TINYTEXT NULL AFTER `phone`, ADD `DocType` TINYTEXT NULL AFTER `state`, ADD `DocNo` TINYTEXT NULL AFTER `DocType`, ADD `address` TINYTEXT NULL AFTER `DocNo`,ADD `ReceiverDocType` TINYTEXT NULL AFTER `ReceiverMob`, ADD `ReceiverDocNo` TINYTEXT NULL AFTER `ReceiverDocType`;
+
+
+ALTER TABLE `invoice_master` ADD `BookingNo` TINYTEXT NULL AFTER `ReceiverDocNo`, ADD `ModeofShipment` TINYTEXT NULL AFTER `BookingNo`;
