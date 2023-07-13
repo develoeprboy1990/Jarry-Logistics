@@ -13,7 +13,6 @@
     }
 
     body,
-    td,
     th {
       font-family: Arial, Helvetica, sans-serif;
       font-size: 10pt;
@@ -57,229 +56,287 @@
       float: left;
       margin-right: 5px;
     }
+
+    .text-left {
+      text-align: left;
+    }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <div class="row">
-      <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td>
-            <div align="center"><img src="{{asset('documents/'.$company[0]->Logo)}}" width="180"></div>
-          </td>
-        </tr>
-        <tr>
-          <td style="font-size: 28px !important;">
-            <div align="center"><strong>INVOICE</strong></div>
-          </td>
-        </tr>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="30%">
+          <img src="{{asset('documents/'.$company[0]->Logo)}}">
+        </td>
+        <td width="50%" style="padding-left: 0px !important; padding-right: 1px !important;">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td style="padding-left: 0px !important; padding-right: 1px !important;">{{$company[0]->Name}}</td>
+            </tr>
+            <tr>
+              <td style="padding-left: 0px !important; padding-right: 1px !important;">Office: {{$company[0]->Address}} </td>
+            </tr>
 
-        <tr>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td style="padding-left: 0px !important; padding-right: 1px !important;">
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="50%" style="padding-left: 0px !important; padding-right: 1px !important;">
-                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td style="padding-left: 0px !important; padding-right: 1px !important;">{{$company[0]->Name}}</td>
-                    </tr>
-                    <tr>
-                      <td style="padding-left: 0px !important; padding-right: 1px !important;">Office: {{$company[0]->Address}} </td>
-                    </tr>
+            <tr>
+              <td style="padding-left: 0px !important; padding-right: 1px !important;">Contact: {{$company[0]->Contact}}</td>
+            </tr>
 
-                    <tr>
-                      <td style="padding-left: 0px !important; padding-right: 1px !important;">Contact: {{$company[0]->Contact}}</td>
-                    </tr>
+            <tr>
+              <td style="padding-left: 0px !important; padding-right: 1px !important;">TRN : {{$company[0]->TRN}}</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="background-color: #454573; color:#e9e9e9;border:solid 1px #454573">
+          <h3> JARRY | 03349021704 </h3>
+        </td>
+        <td style="text-align:left;border:solid 1px #454573"> TRN. 100429315300003</td>
+      </tr>
+    </table>
 
-                    <tr>
-                      <td style="padding-left: 0px !important; padding-right: 1px !important;">TRN : {{$company[0]->TRN}}</td>
-                    </tr>
-                  </table>
-                </td>
-                <td width="50%" valign="top" style="padding-left: 0px !important; padding-right: 1px !important;">
+    <table width="100%" cellspacing="0">
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
 
-                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td style="padding-left: 0px !important; padding-right: 1px !important;">
+        <td style="background-color: #bedefb;  border:solid 1px #bedefb">
+          <h3> AIRWAY BILL NO: 62001 <br />
+            CARGO TYPE: COURIER INDIA </h3>
+        </td>
 
-                        <div align="right" style="font-size: 14pt;"># {{$invoice_master[0]->InvoiceNo}} </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div align="right"></div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="padding-left: 0px !important; padding-right: 1px !important;">
-                        <div align="right">Balance Due </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="padding-left: 0px !important; padding-right: 1px !important;">
-                        <div align="right">{{session::get('Currency')}}{{$invoice_master[0]->GrandTotal}} </div>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-      <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td>&nbsp;</td>
-          <td valign="top">&nbsp;</td>
-        </tr>
-        <tr>
-          <td width="50%" style="padding-left: 0px !important; padding-right: 1px !important;">
+        <td style="text-align:left;background-color: #bedefb;  border:solid 1px #bedefb">
+          Collection Date: 12-07-2023
+          <br />
+          Office: 123 Cargo - Dubai
+          <br />
+          Staff: 123 CARGO-UAE
+        </td>
 
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td style="padding-left: 0px !important; padding-right: 1px !important;">Bill To </td>
-              </tr>
-              <tr>
-                <td style="padding-left: 0px !important; padding-right: 1px !important; font-weight: bolder;"> {{$invoice_master[0]->PartyName}} </td>
-              </tr>
+      </tr>
+    </table>
 
-              <tr>
-                <td style="padding-left: 0px !important; padding-right: 1px !important;">Office: {{$invoice_master[0]->Address}} </td>
-              </tr>
+    <table width="100%" cellspacing="0">
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <table width="100%" border="1" cellspacing="0" class="top-table">
+            <tr>
+              <th>Date</th>
+              <th>Destination</th>
+              <th>Pcs</th>
+              <th>Total Weight</th>
+              <th>Tracking Number</th>
+            </tr>
+            <tr>
+              <td>18-06-2023</td>
+              <td>Karacm</td>
+              <td>23</td>
+              <td>40768</td>
+              <td align="middle">2474</td>
+            </tr>
 
-              <tr>
-                <td style="padding-left: 0px !important; padding-right: 1px !important;">{{$invoice_master[0]->Phone}}</td>
-              </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>
+          <table width="100%" cellspacing="0">
+
+            <tr>
+              <td colspan="2" style="background-color: #454573; color:#e9e9e9;border:solid 1px #454573">
+                <h3>CUSTOMER</h3>
+              </td>
+            </tr>
+            <tr>
+              <td>Shipper Name</td>
+              <td>: Mutahir Shah</td>
+            </tr>
+            <tr>
+              <td>Address</td>
+              <td>: Shop No 6. Fujal Mummar Daiar Dilara Dubia </td>
+            </tr>
+            <tr>
+              <td>Customer TRN:</td>
+              <td> : 123456</td>
+            </tr>
+            <tr>
+              <td>Mob</td>
+              <td> : 03349021704</td>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <table width="100%" cellspacing="0">
+            <tr>
+              <td colspan="2" style="background-color: #454573; color:#e9e9e9;border:solid 1px #454573">
+                <h3>DELIVERY / RECEIVER</h3>
+              </td>
+            </tr>
+            <tr>
+              <td>Shipper Name</td>
+              <td>: Mutahir Shah</td>
+            </tr>
+            <tr>
+              <td>Address</td>
+              <td>: Shop No 6. Fujal Mummar Daiar Dilara Dubia </td>
+            </tr>
+            <tr>
+              <td>Customer TRN:</td>
+              <td> : 123456</td>
+            </tr>
+            <tr>
+              <td>Mob</td>
+              <td> : 03349021704</td>
+            </tr>
+          </table>
+
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <table width="100%" cellspacing="0">
+            <tr>
+              <td colspan="2" style="background-color: #454573; color:#e9e9e9;border:solid 1px #454573">
+                <h3>CARGO DETAILS</h3>
+              </td>
+            </tr>
+            <tr>
+              <td>Shipper Name</td>
+              <td>: Mutahir Shah</td>
+            </tr>
+            <tr>
+              <td>Address</td>
+              <td>: Shop No 6. Fujal Mummar Daiar Dilara Dubia </td>
+            </tr>
+            <tr>
+              <td>Customer TRN:</td>
+              <td> : 123456</td>
+            </tr>
+            <tr>
+              <td>Mob</td>
+              <td> : 03349021704</td>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <table width="100%" cellspacing="0">
+            <tr>
+              <td colspan="2" style="background-color: #454573; color:#e9e9e9;border:solid 1px #454573">
+                <h3>CHARGES & PAYMENTS</h3>
+              </td>
+            </tr>
+            <tr>
+              <td>Shipper Name</td>
+              <td>: Mutahir Shah</td>
+            </tr>
+            <tr>
+              <td>Address</td>
+              <td>: Shop No 6. Fujal Mummar Daiar Dilara Dubia </td>
+            </tr>
+            <tr>
+              <td>Customer TRN:</td>
+              <td> : 123456</td>
+            </tr>
+            <tr>
+              <td>Mob</td>
+              <td> : 03349021704</td>
+            </tr>
+          </table>
+
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <hr />
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <table width="100%" border="1" cellspacing="0">
+            <tr>
+              <td>
+                <b> Item Details:</b> PANEL LIGHT 5 , FANCY LIGHT2 , ...................62 KG
+              </td>
+            </tr>
+          </table>
+
+        </td>
+      </tr>
 
 
-            </table>
-          </td>
-          <td width="50%" valign="top" style="padding-left: 0px !important; padding-right: 1px !important;">
+      <tr>
+        <td colspan="2">
+          <table width="100%" cellspacing="0">
+            <tr>
+              <td colspan="2" style="background-color: #454573; color:#e9e9e9;border:solid 1px #454573;text-align:center">
+                <h3>CUSTOMER DECLARATION</h3>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-left:10px">
+                <p>
+                  <b>Note:</b> Any complaints arising against this consignment should be reported within seven days. Complaints will not be entertained after 7 days of delivery
+                  date. Maximum payback for total lost will be Dhs.20/- per Kilogram. Total cargo value should not exceed Rs.20,000/-. 123 CARGO LLC is not responsible
+                  for any damages of fragile (glass etc.) items and shipment delay occurring due to the formalities of Government/Air/Sea authorities. We request our
+                  customers to cooperate with us.
+                  I, JAFFAR R holder of Emirates ID number: 784- hereby declare that all the above said items are my personal effects/home appliances sending to my
+                  Friend Mr./Mrs. Jolly Aggarwal through 123 CARGO LLC, PO BOX 92908, Dubai, United Arab Emirates vide their waybill number : 62001 which is sent as
+                  the unaccompanied baggage of an international passenger.
+                </p>
+              </td>
+            </tr>
+          </table>
 
-            <table width="100%" border="0" cellspacing="0" cellpadding="3">
-              <tr>
-                <td style="padding-left: 0px !important; padding-right: 1px !important;" width="80%">
-                  <div align="right">Invoice Date : </div>
-                </td>
-                <td style="padding-left: 0px !important; padding-right: 1px !important;" width="20%">
-                  <div align="right">{{dateformatreport($invoice_master[0]->Date)}} </div>
-                </td>
-              </tr>
-              <tr>
-                <td style="padding-left: 0px !important; padding-right: 1px !important;">
-                  <div align="right">Terms : </div>
-                </td>
-                <td style="padding-left: 0px !important; padding-right: 1px !important;">
-                  <div align="right">Custom</div>
-                </td>
-              </tr>
-              <tr>
-                <td style="padding-left: 0px !important; padding-right: 1px !important;">
-                  <div align="right">Due Date : </div>
-                </td>
-                <td style="padding-left: 0px !important; padding-right: 1px !important;">
-                  <div align="right">{{dateformatreport($invoice_master[0]->DueDate)}} </div>
-                </td>
-              </tr>
-              <tr>
-                <td style="padding-left: 0px !important; padding-right: 1px !important;">
-                  <div align="right">VAT No. : </div>
-                </td>
-                <td style="padding-left: 0px !important; padding-right: 1px !important;">
-                  <div align="right">{{$invoice_master[0]->TRN}}</div>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-      <br />
-      <div class="float-container">
-        <table width="100%" border="1" cellspacing="0" class="top-table">
-          <tr>
-            <th>Date</th>
-            <th>Destination</th>
-            <th>Pcs</th>
-            <th>Total Weight</th>
-            <th>Tracking Number</th>
-          </tr>
-          <tr>
-            <td>18-06-2023</td>
-            <td>Karacm</td>
-            <td>23</td>
-            <td>40768</td>
-            <td align="middle">2474</td>
-          </tr>
-
-        </table>
-      </div>
-      <div class="float-container">
-        <table>
-          <tr>
-            <td>
-              <table width="100%" border="1" cellspacing="0">
-                <tr>
-                  <td>Shipper Name</td>
-                  <td>Mutahir Shah</td>
-                </tr>
-                <tr>
-                  <td>Address</td>
-                  <td>Shop No 6. Fujal Mummar Daiar Dilara Dubia </td>
-                </tr>
-                <tr>
-                  <td>Customer TRN:</td>
-                  <td> </td>
-                </tr>
-                <tr>
-                  <td>Mob</td>
-                  <td> 03349021704</td>
-                </tr>
-              </table>
-              </td> 
-            <td>
-              <table width="100%" border="1" cellspacing="0"  >
-                <tr>
-                  <td>Shipper Name</td>
-                  <td>Mutahir Shah</td>
-                </tr>
-                <tr>
-                  <td>Address</td>
-                  <td>Shop No 6. Fujal Mummar Daiar Dilara Dubia </td>
-                </tr>
-                <tr>
-                  <td colspan="2">&nbsp; </td>
-                </tr>
-                <tr>
-                  <td>Mob</td>
-                  <td> 03349021704</td>
-                </tr>
-              </table>
-
-              </td></tr>
-              <tr>
-                    <td>Mode Of Shippment: </td>
-                  </tr>
-        </table>
-
-             
-      </div>
+        </td>
+      </tr>
 
 
 
+    </table>
+    <table width="100%">
+      <tr>
+        <td width="180">
+
+          <img src="{{asset('documents/'.$company[0]->Signature)}}" width="200">
+          <p>Customer Signature</p>
+        </td>
+        <td width="20" style="text-align: right;">
+          <img src="{{asset('documents/'.$company[0]->Signature)}}" width="200">
+          <p>JARRY LOGISTICS</p>
 
 
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <hr />
+        </td>
+      </tr>
 
+      <tr>
+        <td colspan="2" style="text-align:center">
+          https://extbooks.com
+        </td>
+      </tr>
+    </table>
 
-    </div>
-    <p>Notes</p>
-    <p>Thanks for your business </p>
-    <div id="footer">
-      <img src="{{asset('documents/'.$company[0]->Signature)}}" width="250">
-    </div>
   </div>
 </body>
 
