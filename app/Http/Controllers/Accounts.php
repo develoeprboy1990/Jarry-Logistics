@@ -5645,13 +5645,26 @@ class Accounts extends Controller
   public  function SaleInvoiceSave(request $request)
   {
 
+    $data = array(
+      'PartyName' => $request->customer,
+      'Address' => $request->address,
+      'City' => $request->state,
+      'Mobile' => $request->mobile_number,
+      'Phone' => $request->phone,
+      'Active' => 'Yes',
+    );
+
+
+    $id = DB::table('party')->insertGetId($data);
+
+
 
     $invoice_mst = array(
       'InvoiceNo' => $request->InvoiceNo,
       'InvoiceType' => 'Invoice',
       'Date' => $request->Date,
       'DueDate' => $request->DueDate,
-      'PartyID' => $request->PartyID,
+      'PartyID' => $id,
       'Pcs' => $request->Pcs,
       'WalkinCustomerName' => $request->customer,
       'mobile_number' => $request->mobile_number,
