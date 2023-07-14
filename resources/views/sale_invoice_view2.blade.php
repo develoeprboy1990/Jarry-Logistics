@@ -64,6 +64,9 @@
     .td-color {
       background-color: #252060
     }
+    h3{
+      margin:5px;
+    }
   </style>
 </head>
 
@@ -101,9 +104,9 @@
       </tr>
       <tr>
         <td style=" color:#e9e9e9;border:solid 1px #454573" class="td-color">
-          <h3> JARRY | 03349021704 </h3>
+          <h3 > {{$company[0]->Name}} | {{$company[0]->Contact}} </h3>
         </td>
-        <td style="text-align:left;border:solid 1px #454573"> TRN. 100429315300003</td>
+        <td style="border:solid 1px #454573;text-align:right;"> TRN. {{$company[0]->TRN}}&nbsp;&nbsp;</td>
       </tr>
     </table>
 
@@ -114,16 +117,16 @@
       <tr>
 
         <td style="background-color: #bedefb;  border:solid 1px #bedefb">
-          <h3> AIRWAY BILL NO: 62001 <br />
-            CARGO TYPE: COURIER INDIA </h3>
+          <h3> AIRWAY BILL NO: {{$invoice_master[0]->TrackingNumber}} <br />
+            CARGO TYPE: {{$invoice_master[0]->ModeofShipment}} </h3>
         </td>
 
-        <td style="text-align:left;background-color: #bedefb;  border:solid 1px #bedefb">
-          Collection Date: 12-07-2023
+        <td style="text-align:right;background-color: #bedefb;  border:solid 1px #bedefb">
+          Collection Date: {{$invoice_master[0]->Date}}&nbsp;&nbsp;
           <br />
-          Office: 123 Cargo - Dubai
+          Office: 123 Cargo - Dubai&nbsp;&nbsp;
           <br />
-          Staff: 123 CARGO-UAE
+          Staff: 123 CARGO-UAE&nbsp;&nbsp;
         </td>
 
       </tr>
@@ -144,11 +147,11 @@
               <th>Tracking Number</th>
             </tr>
             <tr>
-              <td>18-06-2023</td>
-              <td>Karacm</td>
-              <td>23</td>
-              <td>40768</td>
-              <td align="middle">2474</td>
+              <td>{{$invoice_master[0]->Date}}</td>
+              <td>{{$invoice_master[0]->Destination}}</td>
+              <td>{{$invoice_master[0]->Pcs}}</td>
+              <td>{{$invoice_master[0]->TotalWeight}}</td>
+              <td align="middle">{{$invoice_master[0]->TrackingNumber}}</td>
             </tr>
 
           </table>
@@ -158,108 +161,136 @@
         <td>&nbsp;</td>
       </tr>
       <tr>
-        <td>
-          <table width="100%" cellspacing="0">
-
+        <td valign="top">
+          <table width="100%" style="height: 150px;" cellspacing="0">
             <tr>
               <td colspan="2" style=" color:#e9e9e9;border:solid 1px #454573"  class="td-color">
                 <h3>CUSTOMER</h3>
               </td>
             </tr>
             <tr>
-              <td>Shipper Name</td>
-              <td>: Mutahir Shah</td>
+              <td>Customer </td>
+              <td>: {{$invoice_master[0]->WalkinCustomerName}}</td>
+            </tr>
+            <tr>
+              <td>Mobile</td>
+              <td>: {{$invoice_master[0]->mobile_number}}</td>
+            </tr>
+            <tr>
+              <td>Sender</td>
+              <td>: {{$invoice_master[0]->sender}}</td>
+            </tr>
+            <tr>
+              <td>Phone</td>
+              <td>: {{$invoice_master[0]->phone}}</td>
+            </tr>
+            <tr>
+              <td>Emirate/State</td>
+              <td>: {{$invoice_master[0]->state}}</td>
+            </tr>
+            <tr>
+              <td>Doc.Type</td>
+              <td>: {{$invoice_master[0]->DocNo}}</td>
+            </tr>
+            <tr>
+              <td>Doc.No.</td>
+              <td>: {{$invoice_master[0]->TrackingNumber}}</td>
             </tr>
             <tr>
               <td>Address</td>
-              <td>: Shop No 6. Fujal Mummar Daiar Dilara Dubia </td>
-            </tr>
-            <tr>
-              <td>Customer TRN:</td>
-              <td> : 123456</td>
-            </tr>
-            <tr>
-              <td>Mob</td>
-              <td> : 03349021704</td>
+              <td>: {{$invoice_master[0]->address}}</td>
             </tr>
           </table>
         </td>
-        <td>
-          <table width="100%" cellspacing="0">
+        <td valign="top">
+          <table width="100%"  style="height: 150px;" cellspacing="0">
             <tr>
               <td colspan="2" style="color:#e9e9e9;border:solid 1px #454573"  class="td-color">
                 <h3>DELIVERY / RECEIVER</h3>
               </td>
             </tr>
             <tr>
-              <td>Shipper Name</td>
-              <td>: Mutahir Shah</td>
+              <td>Name</td>
+              <td>: {{$invoice_master[0]->ReceiverName}}</td>
+            </tr>
+            <tr>
+              <td>Phone</td>
+              <td>: {{$invoice_master[0]->ReceiverMob}}</td>
+            </tr>
+            <tr>
+              <td>Doc.Type</td>
+              <td>: {{$invoice_master[0]->ReceiverDocType}}</td>
+            </tr>
+            <tr>
+              <td>Doc.No.</td>
+              <td>: {{$invoice_master[0]->ReceiverDocNo}}</td>
             </tr>
             <tr>
               <td>Address</td>
-              <td>: Shop No 6. Fujal Mummar Daiar Dilara Dubia </td>
-            </tr>
-            <tr>
-              <td>Customer TRN:</td>
-              <td> : 123456</td>
-            </tr>
-            <tr>
-              <td>Mob</td>
-              <td> : 03349021704</td>
+              <td>: {{$invoice_master[0]->ReceiverAddress}}</td>
             </tr>
           </table>
-
         </td>
       </tr>
+
       <tr>
-        <td>
-          <table width="100%" cellspacing="0">
+        <td valign="top">
+          <table width="100%" style="height: 150px;" cellspacing="0">
             <tr>
               <td colspan="2" style=" color:#e9e9e9;border:solid 1px #454573" class="td-color">
                 <h3>CARGO DETAILS</h3>
               </td>
             </tr>
             <tr>
-              <td>Shipper Name</td>
-              <td>: Mutahir Shah</td>
+              <td>Total Weight</td>
+              <td>:  {{$invoice_master[0]->TotalWeight}} KG</td>
             </tr>
             <tr>
-              <td>Address</td>
-              <td>: Shop No 6. Fujal Mummar Daiar Dilara Dubia </td>
+              <td>Cargo Value</td>
+              <td>: 1800</td>
             </tr>
             <tr>
-              <td>Customer TRN:</td>
-              <td> : 123456</td>
-            </tr>
-            <tr>
-              <td>Mob</td>
-              <td> : 03349021704</td>
+              <td>No. of Boxes</td>
+              <td> : {{$invoice_master[0]->Pcs}}</td>
             </tr>
           </table>
         </td>
-        <td>
-          <table width="100%" cellspacing="0">
+        <td valign="top">
+          <table width="100%" style="height: 150px;" cellspacing="0" >
             <tr>
-              <td colspan="2" style=" color:#e9e9e9;border:solid 1px #454573" class="td-color">
+              <td colspan="2"  style=" color:#e9e9e9;border:solid 1px #454573" class="td-color">
                 <h3>CHARGES & PAYMENTS</h3>
               </td>
             </tr>
             <tr>
-              <td>Shipper Name</td>
-              <td>: Mutahir Shah</td>
+              <td>Total Amount</td>
+              <td>:  {{$invoice_master[0]->SubTotal}}</td>
             </tr>
             <tr>
-              <td>Address</td>
-              <td>: Shop No 6. Fujal Mummar Daiar Dilara Dubia </td>
+              <td>Documents Fee</td>
+              <td>:  {{$invoice_master[0]->DocumentFees}}</td>
             </tr>
             <tr>
-              <td>Customer TRN:</td>
-              <td> : 123456</td>
+              <td>Insurance</td>
+              <td>:  {{$invoice_master[0]->Insurance}}</td>
             </tr>
             <tr>
-              <td>Mob</td>
-              <td> : 03349021704</td>
+              <td>Wooden Box / Packing Fees</td>
+              <td>:  {{$invoice_master[0]->PackingFee}}</td>
             </tr>
+            <tr>
+              <td>Transortation Charges</td>
+              <td>:  {{$invoice_master[0]->TransportationCharges}}</td>
+            </tr>
+            <tr>
+              <td>Total VAT</td>
+              <td>:  {{$invoice_master[0]->TotalVat}}</td>
+            </tr>
+            <tr>
+              <td>Grand Total</td>
+              <td>:  {{$invoice_master[0]->GrandTotal}}</td>
+            </tr>
+            
           </table>
 
         </td>
@@ -276,7 +307,13 @@
           <table width="100%" border="1" cellspacing="0">
             <tr>
               <td>
-                <b> Item Details:</b> PANEL LIGHT 5 , FANCY LIGHT2 , ...................62 KG
+                <b> Item Details:</b> 
+               @foreach($invoice_detail as $key => $value)
+               
+               {{$value->Description}},
+               
+               @endforeach
+               ........{{$invoice_master[0]->TotalWeight}} KG
               </td>
             </tr>
           </table>
@@ -299,7 +336,7 @@
                   <b>Note:</b> Any complaints arising against this consignment should be reported within seven days. Complaints will not be entertained after 7 days of delivery
                   date. Maximum payback for total lost will be Dhs.20/- per Kilogram. Total cargo value should not exceed Rs.20,000/-. 123 CARGO LLC is not responsible
                   for any damages of fragile (glass etc.) items and shipment delay occurring due to the formalities of Government/Air/Sea authorities. We request our
-                  customers to cooperate with us.
+                  customers to cooperate with us.<br>
                   I, JAFFAR R holder of Emirates ID number: 784- hereby declare that all the above said items are my personal effects/home appliances sending to my
                   Friend Mr./Mrs. Jolly Aggarwal through 123 CARGO LLC, PO BOX 92908, Dubai, United Arab Emirates vide their waybill number : 62001 which is sent as
                   the unaccompanied baggage of an international passenger.
@@ -318,7 +355,6 @@
       <tr>
         <td width="180">
 
-          <img src="{{asset('documents/'.$company[0]->Signature)}}" width="200">
           <p>Customer Signature</p>
         </td>
         <td width="20" style="text-align: right;">

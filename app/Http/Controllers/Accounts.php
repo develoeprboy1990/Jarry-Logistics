@@ -5653,8 +5653,6 @@ class Accounts extends Controller
       'Phone' => $request->phone,
       'Active' => 'Yes',
     );
-
-
     $id = DB::table('party')->insertGetId($data);
 
 
@@ -5714,7 +5712,7 @@ class Accounts extends Controller
         $invoice_det = array(
           'InvoiceMasterID'    => $InvoiceMasterID,
           'InvoiceNo'          => $request->InvoiceNo,
-          'ItemID'             => 0, //$request->ItemID[$i],
+          'ItemID'             => 1, //$request->ItemID[$i],
           'PartyID'            => $request->input('PartyID'),
           'Qty'                => $request->Qty[$i],
           'Weight'             => $request->Weight[$i],
