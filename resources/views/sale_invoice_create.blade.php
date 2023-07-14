@@ -384,7 +384,7 @@
                                         </select>
                                     </div>
                                 </div>
-                             
+
                             </div>
                             <div class="col-md-6">
                                 <div class="col-12">
@@ -468,7 +468,7 @@
                                 </div>
 
 
-                                
+
                                 <div class="col-12">
                                     <div class="mb-1 row">
                                         <div class="col-sm-3">
@@ -539,7 +539,7 @@
                                     </thead>
                                     <tbody>
                                         <tr class="p-3">
-                                            <td bordercolor="1" class="p-1    text-left" valign="top"><input class="case" type="checkbox" /></td>
+                                            <td bordercolor="1" class="p-1 text-left" valign="top"><input class="case" type="checkbox" /></td>
 
                                             <td valign="top">
                                                 <input type="text" name="Description[]" id="Description[]" rows="2" class="form-control" style="width: 300px !important;">
@@ -558,14 +558,13 @@
                                             </td>
 
                                             <td valign="top">
-                                                <input type="text" name="Vat[]" id="Vat_1" class=" form-control" autocomplete="off" value="">
+                                                <input type="text" name="Vat[]" id="Vat_1" class="form-control  changesNo" autocomplete="off" value="">
                                             </td>
 
 
                                             <td valign="top">
                                                 <input type="number" name="Price[]" id="Price_1" class=" form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" step="0.01">
                                             </td>
-
                                             <input type="hidden" name="Discount[]" id="Discount_1" value="0">
                                             <input type="hidden" name="DiscountType[]" id="DiscountType_1" value="1">
                                             <input type="hidden" name="Gross[]" id="Gross_1">
@@ -649,7 +648,7 @@
                                                 <div class="input-group">
                                                     <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
 
-                                                    <input type="text" class="form-control" id="DocumentFees" name="DocumentFees" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+                                                    <input type="text" class="form-control changesNo" id="DocumentFees" name="DocumentFees" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                                 </div>
                                             </div>
                                         </div>
@@ -665,7 +664,7 @@
                                                 <div class="input-group">
                                                     <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
 
-                                                    <input type="text" class="form-control" id="Insurance" name="Insurance" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+                                                    <input type="text" class="form-control changesNo" id="Insurance" name="Insurance" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                                 </div>
                                             </div>
                                         </div>
@@ -682,7 +681,7 @@
                                                 <div class="input-group">
                                                     <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
 
-                                                    <input type="text" class="form-control" id="PackingFee" name="PackingFee" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+                                                    <input type="text" class="form-control changesNo" id="PackingFee" name="PackingFee" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                                 </div>
                                             </div>
                                         </div>
@@ -698,7 +697,7 @@
                                                 <div class="input-group">
                                                     <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
 
-                                                    <input type="text" class="form-control" id="TransportationCharges" name="TransportationCharges" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+                                                    <input type="text" class="form-control changesNo" id="TransportationCharges" name="TransportationCharges" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                                 </div>
                                             </div>
                                         </div>
@@ -714,7 +713,7 @@
                                                 <div class="input-group">
                                                     <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
 
-                                                    <input type="text" class="form-control" id="TotalVat" name="TotalVat" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+                                                    <input type="text" class="form-control changesNo" id="TotalVat" name="TotalVat" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                                 </div>
                                             </div>
                                         </div>
@@ -779,7 +778,7 @@
 
         html += '<td valign="top"><input type="text" name="Freight[]" id="Freight_1" class=" form-control" autocomplete="off"  value=""></td>';
 
-        html += '<td valign="top"><input type="text" name="Vat[]" id="Vat_1" class=" form-control" autocomplete="off"  value=""></td>';
+        html += '<td valign="top"><input type="text" name="Vat[]" id="Vat_' + i + '" class="form-control changesNo" autocomplete="off"  value=""></td>';
 
         html += '<td valign="top"><input type="text" name="Price[]" id="Price_' + i + '" class="form-control changesNo " autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
 
@@ -859,10 +858,8 @@
 
         $('#Price_' + id[1]).val(json["SellingPrice"]);
         $('#TaxID_' + id[1]).val(json["Percentage"]);
-
-        var Qty = $('#Qty_' + id[1]).val();
         var Price = $('#Price_' + id[1]).val();
-        var QtyRate = parseFloat(Price) * parseFloat(Qty);
+        var QtyRate = parseFloat(Price);
 
 
 
@@ -880,7 +877,7 @@
 
             var DiscountCalculated = (parseFloat(QtyRate) * parseFloat(Discount) / 100);
         } else {
-            var DiscountCalculated = parseFloat(Discount) * parseFloat(Qty);
+            var DiscountCalculated = parseFloat(Discount);
         }
 
         $('#DiscountAmount_' + id[1]).val(DiscountCalculated);
@@ -905,6 +902,7 @@
 
 
         var grandtotaltax = 0;
+        var TotalVat = 0;
 
         $('.totalLinePrice2').each(function() {
             if ($(this).val() != '') grandtotaltax += parseFloat($(this).val());
@@ -948,10 +946,7 @@
 
     //Calculate qty
     $(document).on('change keyup blur ', '.QtyTotal', function() {
-
-
         CalculateQtyTotal();
-
     });
 
 
@@ -970,15 +965,7 @@
 
     //price change
     $(document).on('change keyup blur ', '.changesNo', function() {
-
-
-
         singlerowcalculation($(this).attr('id'));
-
-
-
-
-
         calculatediscount();
         calculateTotal();
         TaxIncExc();
@@ -987,137 +974,110 @@
     //////////
 
     function singlerowcalculation(idd) {
+
         TaxIncExc();
         id_arr = idd;
         id = id_arr.split("_");
-
-        Qty = $('#Qty_' + id[1]).val();
-
         TaxPer = $('#TaxID_' + id[1]).val();
-
         Price = $('#Price_' + id[1]).val();
-
-
-        var Qty = $('#Qty_' + id[1]).val();
         var Price = $('#Price_' + id[1]).val();
-        var QtyRate = parseFloat(Price) * parseFloat(Qty);
-
-
-
-
+        var QtyRate = parseFloat(Price);
 
         var DiscountType = $('#DiscountType_' + id[1]).val();
-
-
-
         var Discount = $('#Discount_' + id[1]).val();
-
-
-
-
         if (DiscountType == 1) {
-
-
             var DiscountCalculated = (parseFloat(QtyRate) * parseFloat(Discount) / 100);
         } else {
-            var DiscountCalculated = parseFloat(Discount) * parseFloat(Qty);
+            var DiscountCalculated = parseFloat(Discount);
         }
-
         $('#DiscountAmount_' + id[1]).val(DiscountCalculated);
-
-
         var Gross = parseFloat(QtyRate) - parseFloat(DiscountCalculated);
-
         $('#Gross_' + id[1]).val(Gross);
-
-
         var TaxID = $('#TaxID_' + id[1]).val();
-
         var TaxCalculation = (parseFloat(Gross) * parseFloat(TaxID)) / 100;
-
         $('#TaxVal_' + id[1]).val(TaxCalculation);
-
-
         $('#ItemTotal_' + id[1]).val(Gross - TaxCalculation);
-
         var grandtotaltax = 0;
-
         $('.totalLinePrice2').each(function() {
             if ($(this).val() != '') grandtotaltax += parseFloat($(this).val());
         });
-
         $('#grandtotaltax').val(parseFloat(grandtotaltax));
-
-
         TaxIncExc();
-
-
-
-
     }
-
-    // 
 
     function TaxIncExc() {
         var TaxType = $('#TaxType').val();
         // var subTotal = $('#subTotal').val();
         var DiscountAmount = $('#discountAmount').val();
         var grandtotaltax = 0;
-
-
-
-
         var table_lenght = $('table tr').length - 1;
-
-
         var Qty = 0
         var Price = 0;
         var TaxVal = 0;
         var Gross = 0;
-        for (let i = 1; i <= table_lenght; i++) {
+        var Vat = 0;
 
-            Qty = $('#Qty_' + i).val();
+        Insurance = $('#Insurance').val();
+        DocumentFees = $('#DocumentFees').val();
+        PackingFee = $('#PackingFee').val();
+        TransportationCharges = $('#TransportationCharges').val();
+        TotalVat = $('#TotalVat').val();
+        if ($('#Insurance') !== null && Insurance === "") {
+            Insurance = 0;
+        }
+        if ($('#DocumentFees') !== null && DocumentFees === "") {
+            DocumentFees = 0;
+        }
+        if ($('#PackingFee') !== null && PackingFee === "") {
+            PackingFee = 0;
+        }
+        if ($('#TransportationCharges') !== null && TransportationCharges === "") {
+            TransportationCharges = 0;
+        }
+        if ($('#TotalVat') !== null && TotalVat === "") {
+            TotalVat = 0;
+        }
+
+        for (let i = 1; i <= table_lenght; i++) {
             Price = $('#Price_' + i).val();
             TaxVal = $('#TaxVal_' + i).val();
             Gross = $('#Gross_' + i).val();
-
-            $('#ItemTotal_' + i).val(parseFloat(Gross));
+            if (Gross != '') $('#ItemTotal_' + i).val(parseFloat(Gross));
+            if ($('#Vat_' + i).val() != '') {
+                Vat += parseFloat($('#Vat_' + i).val());
+            
+        }      
 
         }
-
-
-
+        if (Vat !== 0) {
+                TotalVat = Vat;
+                $('#TotalVat').val(TotalVat);
+            } 
         $('.totalLinePrice2').each(function() {
             if ($(this).val() != '') grandtotaltax += parseFloat($(this).val());
         });
 
         subTotal = 0;
         $('.totalLinePrice').each(function() {
-            if ($(this).val() != '') subTotal += parseFloat($(this).val());
+            if ($(this).val() !== "" && $(this).val() !== null && $(this).val() !== "NaN") {
+                subTotal += parseFloat($(this).val()); 
+            }
+            
         });
-
-
-
         if (TaxType == 'TaxInclusive') {
-
             subTotal1 = parseFloat(subTotal) - parseFloat(TaxVal);
             $('#subTotal').val(subTotal1);
-
             var Total = parseFloat(subTotal1) - parseFloat(DiscountAmount).toFixed(2);
 
             $('#Total').val(parseFloat(Total));
             $('#Grandtotal').val(parseFloat(Total) + parseFloat(grandtotaltax));
 
         } else {
-
             $('#subTotal').val(parseFloat(subTotal));
-
-            var Total = parseFloat(subTotal) - parseFloat(DiscountAmount).toFixed(2);
-            var Grandtotal = ((parseFloat(Total) + parseFloat(grandtotaltax))).toFixed(2);
-
-
+            var Total = parseFloat(subTotal);
+            var Grandtotal = (parseFloat(Total)).toFixed(2);
             $('#Total').val(Total);
-            $('#Grandtotal').val(Grandtotal);
+            $('#Grandtotal').val(parseFloat(Grandtotal) + parseFloat(DocumentFees) + parseFloat(Insurance) + parseFloat(PackingFee) + parseFloat(TransportationCharges) + parseFloat(TotalVat));
 
         }
 
@@ -1126,52 +1086,31 @@
 
     $(document).on('change', '.changesNoo', function() {
 
-
-
         id_arr = $(this).attr('id');
         id = id_arr.split("_");
-
         val = $('#ItemID0_' + id[1]).val().split("|");
-
-
         // alert($('#ItemID0_'+id[1]).val());
         $('#ItemID_' + id[1]).val(val[0]);
-
-
         calculatediscount();
-
     });
 
     ////////////////////////////////////////////
-
     function calculatediscount() {
-
         subTotal = parseFloat($('#subTotal').val());
-
-
         discountper = $('#discountper').val();
-
         if (discountper != '' && typeof(discountper) != "undefined") {
-
             discountamount = parseFloat(subTotal) * (parseFloat(discountper) / 100);
-
             $('#discountAmount').val(parseFloat(discountamount.toFixed(2)));
-            total = subTotal - discountamount;
+            total = subTotal; // - discountamount;
             $('#Total').val(total.toFixed(2));
             $('#Grandtotal').val(total.toFixed(2) + parseFloat($('#grandtotaltax').val()));
-
-
         } else {
             $('#discountper').val(0);
             // alert('dd');
             $('#DiscountAmount').val(0);
-
-
-            total = subTotal - discountamount;
+            total = subTotal; //- discountamount;
             $('#Total').val(total.toFixed(2));
             $('#Grandtotal').val(total.toFixed(2) + parseFloat($('#grandtotaltax').val()));
-
-
         }
 
     }
@@ -1237,21 +1176,14 @@
 
     //total price calculation 
     function calculateTotal() {
-
-        // grand_tax = 0;
-
-
         subTotal = $('#subTotal').val();
         grandtotaltax = $('#grandtotaltax').val();
+        TotalVat = $('#TotalVat').val();
         discountAmount = $('#discountAmount').val();
         Total = parseFloat(subTotal) - parseFloat(discountAmount);
-        Grandtotal = parseFloat(Total) + parseFloat(grandtotaltax);
-
+        Grandtotal = parseFloat(Total) + parseFloat(TotalVat);
         $('#Total').val(Total);
         $('#Grandtotal').val(Grandtotal);
-
-
-
     }
 
 
@@ -1497,7 +1429,6 @@
                 var grandsum = 0
                 var taxsum = 0;
                 for (let i = 1; i < table_lenght; i++) {
-                    Qty = $('#Qty_' + i).val();
                     Price = $('#Price_' + i).val();
 
 
@@ -1505,10 +1436,10 @@
                     disPerLine = parseFloat(Price) * (TaxValue / 100);
                     $('#TaxVal_' + i).val(parseFloat(disPerLine));
 
-                    grandsum += (Qty * Price) + disPerLine;
+                    grandsum += Price + disPerLine;
                     taxsum += disPerLine;
 
-                    $('#ItemTotal_' + i).val((Qty * Price) + disPerLine);
+                    $('#ItemTotal_' + i).val(Price + disPerLine);
 
                 }
                 $('#grandtotaltax').val(parseFloat(taxsum));
