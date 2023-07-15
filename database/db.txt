@@ -23,3 +23,8 @@ Create or Replace View  v_invoice_master AS select `invoice_master`.`InvoiceMast
 
 
 Create or Replace View v_invoice_detail AS  select `invoice_detail`.`InvoiceNo` AS `InvoiceNo`,`invoice_master`.`Date` AS `Date`,`invoice_detail`.`InvoiceDetailID` AS `InvoiceDetailID`,`invoice_detail`.`InvoiceMasterID` AS `InvoiceMasterID`,`invoice_detail`.`SupplierID` AS `SupplierID`,`invoice_detail`.`PartyID` AS `PartyID`,`invoice_detail`.`Qty` AS `Qty`,`invoice_detail`.`Rate` AS `Rate`,`invoice_detail`.`Total` AS `Total`,`item`.`ItemCode` AS `ItemCode`,`invoice_detail`.`Description` AS `Description`,`invoice_detail`.`TaxPer` AS `TaxPer`,`invoice_detail`.`Tax` AS `Tax`,`invoice_master`.`InvoiceType` AS `InvoiceType`,`invoice_detail`.`Weight` AS `Weight`,`invoice_detail`.`Freight` AS `Freight`,`invoice_detail`.`ItemID` AS `ItemID` from ((`invoice_detail` join `invoice_master` on((`invoice_master`.`InvoiceMasterID` = `invoice_detail`.`InvoiceMasterID`))) join `item` on((`invoice_detail`.`ItemID` = `item`.`ItemID`)))
+
+========================================================================
+15-07-2023
+
+ALTER TABLE `invoice_master` ADD `RiderID` VARCHAR(255) NULL DEFAULT NULL AFTER `UserID`;

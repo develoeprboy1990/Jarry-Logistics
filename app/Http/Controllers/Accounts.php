@@ -5704,6 +5704,7 @@ class Accounts extends Controller
       'CustomerNotes' => $request->CustomerNotes,
       'DescriptionNotes' => $request->DescriptionNotes,
       'UserID' => session::get('UserID'),
+      'RiderID' => $request->RiderID,
     );
     $InvoiceMasterID = DB::table('invoice_master')->insertGetId($invoice_mst);
     // END OF SALE RETURN
@@ -5943,14 +5944,17 @@ class Accounts extends Controller
     $user = DB::table('user')->get();
     $tax = DB::table('tax')->get();
 
+    $user_rider = DB::table('user')->where('UserType', 'Rider')->get();
+
     session()->forget('VHNO');
     session::put('VHNO', $invoice_master[0]->InvoiceNo);
 
 
     $vhno = DB::table('invoice_master')
       ->select(DB::raw('LPAD(IFNULL(MAX(right(InvoiceNo,5)),0)+1,5,0) as VHNO '))->where(DB::raw('left(InvoiceNo,3)'), 'INV', 'invoice_type')->get();
-
-    return view('sale_invoice_edit', compact('invoice_type', 'items', 'vhno', 'party', 'pagetitle', 'item', 'user', 'invoice_master', 'invoice_detail', 'tax'));
+      
+    //return view('sale_invoice_edit', compact('invoice_type', 'items', 'vhno', 'party', 'pagetitle', 'item', 'user', 'invoice_master', 'invoice_detail', 'tax'));
+    return view('sale_invoice_edit_logistics', compact('invoice_type', 'items', 'vhno', 'party', 'pagetitle', 'item', 'user', 'invoice_master', 'invoice_detail', 'tax','user_rider'));
   }
 
   public  function SaleInvoiceUpdate(request $request)
@@ -5972,12 +5976,30 @@ class Accounts extends Controller
 
     // dd($request->all());
     $invoice_mst = array(
-      'InvoiceNo' => $request->InvoiceNo,
-      'InvoiceType' => $request->InvoiceType,
       'Date' => $request->Date,
-      'DueDate' => $request->DueDate,
-      'PartyID' => $request->PartyID,
-      'WalkinCustomerName' => $request->WalkinCustomerName,
+      'Pcs' => $request->Pcs,
+      'WalkinCustomerName' => $request->customer,
+      'mobile_number' => $request->mobile_number,
+      'sender' => $request->sender,
+      'phone' => $request->phone,
+      'state' => $request->state,
+      'DocType' => $request->DocType,
+      'DocNo' => $request->DocNo,
+      'address' => $request->address,
+      'TrackingNumber' => $request->TrackingNumber,
+      'Destination' => $request->Destination,
+      'TotalWeight' => $request->TotalWeight,
+      'ReceiverName' => $request->ReceiverName,
+      'ReceiverMob' => $request->ReceiverMob,
+      'ReceiverDocType' => $request->ReceiverDocType,
+      'ReceiverDocNo' => $request->ReceiverDocNo,
+      'ReceiverAddress' => $request->ReceiverAddress,
+      'BookingNo' => $request->BookingNo,
+      'ModeofShipment' => $request->ModeofShipment,
+      'DocumentFees' => $request->DocumentFees,
+      'Insurance' => $request->Insurance,
+      'PackingFee' => $request->PackingFee,
+      'TransportationCharges' => $request->TransportationCharges,
       'ReferenceNo' => $request->ReferenceNo,
       'PaymentMode' => $request->PaymentMode,
       'PaymentDetails' => $request->PaymentDetails,
@@ -5986,16 +6008,18 @@ class Accounts extends Controller
       'DiscountPer' => $request->DiscountPer,
       'DiscountAmount' => $request->DiscountAmount,
       'Total' => $request->Total,
-      'TaxPer' => $request->Taxpercentage,
-      'Tax' => $request->grandtotaltax,
       'TaxType' => $request->TaxType,
+      'TaxPer' => $request->Taxpercentage,
+      'Tax' => '0', //$request->grandtotaltax,
       'Shipping' => $request->Shipping,
       'GrandTotal' => $request->Grandtotal,
-      'Paid' => $request->amountPaid,
+      'Paid' => $request->Grandtotal,
       'Balance' => $request->amountDue,
       'CustomerNotes' => $request->CustomerNotes,
       'DescriptionNotes' => $request->DescriptionNotes,
       'UserID' => session::get('UserID'),
+      'RiderID' => $request->RiderID,
+
     );
     // dd($challan_mst);
     // $id= DB::table('')->insertGetId($data);
@@ -6014,30 +6038,31 @@ class Accounts extends Controller
 
 
     // END OF SALE RETURN
-
-    //  start for item array from invoice
-    for ($i = 0; $i < count($request->ItemID); $i++) {
-
-      $invoice_det = array(
-        'InvoiceMasterID' => $request->InvoiceMasterID,
-        'InvoiceNo' => $request->InvoiceNo,
-        'ItemID' => $request->ItemID[$i],
-        'PartyID' => $request->input('PartyID'),
-        'Qty' => $request->Qty[$i],
-        'Rate' => $request->Price[$i],
-        'Description' => $request->Description[$i],
-        'TaxPer' => $request->Tax[$i],
-        'Tax' => $request->TaxVal[$i],
-        'Total' => $request->ItemTotal[$i],
-        'Discount' => $request->Discount[$i],
-        'DiscountType' => $request->DiscountType[$i],
-        'Gross' => $request->Gross[$i],
-        'DiscountAmountItem' => $request->DiscountAmountItem[$i],
-
-      );
-
-      $id = DB::table('invoice_detail')->insertGetId($invoice_det);
+    if (!empty($request->Description)) {
+      for ($i = 0; $i < count($request->Description); $i++) {
+        $invoice_det = array(
+          'InvoiceMasterID'    => $InvoiceMasterID,
+          'InvoiceNo'          => $request->InvoiceNo,
+          'ItemID'             => 1, //$request->ItemID[$i],
+          'PartyID'            => $request->input('PartyID'),
+          'Qty'                => $request->Qty[$i],
+          'Weight'             => $request->Weight[$i],
+          'Freight'            => $request->Freight[$i],
+          'Description'        => $request->Description[$i],
+          'TaxPer'             => 2,
+          'Tax'                => $request->Vat[$i],
+          'Rate'               => $request->Price[$i],
+          'Total'              => $request->Price[$i],
+          'Discount'           => $request->Discount[$i],
+          'DiscountType'       => $request->DiscountType[$i],
+          'Gross'              => $request->Gross[$i],
+          'DiscountAmountItem' => 0
+        );
+        $id = DB::table('invoice_detail')->insertGetId($invoice_det);
+      }
     }
+
+
 
     // end foreach
 
