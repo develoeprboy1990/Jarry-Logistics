@@ -533,6 +533,7 @@
                                             <th width="1%">ITEM DETAILS </th>
                                             <th width="2%">WEIGHT</th>
                                             <th width="2%">FREIGHT</th>
+                                            <th width="2%">Tax</th>
                                             <th width="2%">VAT</th>
                                             <th width="2%">TOTAL</th>
                                         </tr>
@@ -549,13 +550,20 @@
                                             <input type="hidden" name="Qty[]" id="Qty_1" class=" form-control changesNo QtyTotal" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" step="0.01" value="1">
 
                                             <td valign="top">
-                                                <input type="text" name="Weight[]" id="Weight_1" class=" form-control" autocomplete="off" value="">
+                                                <input type="text" name="Weight[]" id="Weight_1" class="form-control changesNo" autocomplete="off" value="">
                                             </td>
 
 
                                             <td valign="top">
-                                                <input type="text" name="Freight[]" id="Freight_1" class=" form-control" autocomplete="off" value="">
+                                                <input type="text" name="Freight[]" id="Freight_1" class="form-control changesNo" autocomplete="off" value="">
                                             </td>
+                                            <td valign="top">
+                                                <select name="Tax[]" id="TaxID_1"   required="" class="form-select  changesNo tax exclusive_cal bg-light">
+                                                    <?php foreach ($tax as $key => $valueX1) : ?>
+                                                        <option value="{{$valueX1->TaxPer}}">{{$valueX1->Description}}</option>
+                                                    <?php endforeach ?>
+                                          </select>
+                                        </td>
 
                                             <td valign="top">
                                                 <input type="text" name="Vat[]" id="Vat_1" class="form-control  changesNo" autocomplete="off" value="">
@@ -713,7 +721,7 @@
                                                 <div class="input-group">
                                                     <span class="input-group-text bg-light">{{session::get('Currency')}}</span>
 
-                                                    <input type="text" class="form-control changesNo" id="TotalVat" name="TotalVat" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+                                                    <input type="text" class="form-control" id="TotalVat" name="TotalVat" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                                 </div>
                                             </div>
                                         </div>
@@ -774,9 +782,11 @@
         html += '<input type="hidden" name="Qty[]" id="Qty_' + i + '" class="form-control changesNo QtyTotal" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" value="1">';
 
 
-        html += '<td valign="top"><input type="text" name="Weight[]" id="Weight_1" class=" form-control" autocomplete="off"  value=""></td>';
+        html += '<td valign="top"><input type="text" name="Weight[]" id="Weight_' + i + '" class="form-control changesNo" autocomplete="off"  value=""></td>';
 
-        html += '<td valign="top"><input type="text" name="Freight[]" id="Freight_1" class=" form-control" autocomplete="off"  value=""></td>';
+        html += '<td valign="top"><input type="text" name="Freight[]" id="Freight_' + i + '" class=" form-control changesNo" autocomplete="off"  value=""></td>';
+
+        html += '<td  valign="top"><select name="Tax[]" id="TaxID_' + i + '" class="form-control changesNo exclusive_cal bg-light"><?php foreach ($tax as $key => $valueX1) : ?><option value="{{$valueX1->TaxPer}}">{{$valueX1->Description}}</option><?php endforeach ?></select></td>';
 
         html += '<td valign="top"><input type="text" name="Vat[]" id="Vat_' + i + '" class="form-control changesNo" autocomplete="off"  value=""></td>';
 
@@ -927,13 +937,7 @@
 
 
     }
-
-
-
-
-
-
-
+ 
     //deletes the selected table rows
     $(".delete").on('click', function() {
         $('.case:checkbox:checked').parents("tr").remove();
@@ -942,14 +946,10 @@
         calculateTotal();
         TaxIncExc();
     });
-
-
     //Calculate qty
     $(document).on('change keyup blur ', '.QtyTotal', function() {
         CalculateQtyTotal();
     });
-
-
     function CalculateQtyTotal() {
         QtyTotal = 0;
         $('.QtyTotal').each(function() {
@@ -961,7 +961,6 @@
 
 
     }
-
 
     //price change
     $(document).on('change keyup blur ', '.changesNo', function() {
@@ -1039,9 +1038,20 @@
         }
 
         for (let i = 1; i <= table_lenght; i++) {
-            Price = $('#Price_' + i).val();
-            TaxVal = $('#TaxVal_' + i).val();
-            Gross = $('#Gross_' + i).val();
+            Price   = $('#Price_' + i).val();
+            TaxVal  = $('#TaxVal_' + i).val();
+            Gross   = $('#Gross_' + i).val();
+            Weight  = $('#Weight_' + i).val();
+            Freight = $('#Freight_' + i).val();
+            if (Weight != '' && Freight != '')
+            { 
+                var Price_ = parseFloat(Weight)*parseFloat(Freight);
+                var TaxID_ = $('#TaxID_' + i).val();
+                    $('#Vat_' + i).val((parseFloat(Price_)*parseFloat(TaxID_/100)).toFixed(2));
+                
+                $('#Price_' + i).val(Price_);
+            }
+
             if (Gross != '') $('#ItemTotal_' + i).val(parseFloat(Gross));
             if ($('#Vat_' + i).val() != '') {
                 Vat += parseFloat($('#Vat_' + i).val());
@@ -1050,7 +1060,7 @@
 
         }
         if (Vat !== 0) {
-                TotalVat = Vat;
+                TotalVat = Vat.toFixed(2);
                 $('#TotalVat').val(TotalVat);
             } 
         $('.totalLinePrice2').each(function() {
@@ -1077,7 +1087,7 @@
             var Total = parseFloat(subTotal);
             var Grandtotal = (parseFloat(Total)).toFixed(2);
             $('#Total').val(Total);
-            $('#Grandtotal').val(parseFloat(Grandtotal) + parseFloat(DocumentFees) + parseFloat(Insurance) + parseFloat(PackingFee) + parseFloat(TransportationCharges) + parseFloat(TotalVat));
+            $('#Grandtotal').val(parseFloat(Grandtotal) + parseFloat(DocumentFees) + parseFloat(Insurance) + parseFloat(PackingFee) + parseFloat(TransportationCharges) );
 
         }
 
