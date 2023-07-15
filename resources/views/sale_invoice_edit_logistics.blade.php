@@ -961,10 +961,9 @@
             }
 
             if (Gross != '') $('#ItemTotal_' + i).val(parseFloat(Gross));
-            if ($('#Vat_' + i).val() != '') {
+            if ($('#Vat_' + i).val() !== '' && typeof $('#Vat_' + i).val() !== 'undefined' && $('#Vat_' + i).val() !== '0.00') {
                 Vat += parseFloat($('#Vat_' + i).val());
-            
-        }      
+            }      
 
         }
         if (Vat !== 0) {

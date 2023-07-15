@@ -891,51 +891,27 @@
         }
 
         $('#DiscountAmount_' + id[1]).val(DiscountCalculated);
-
-
         var Gross = parseFloat(QtyRate) - parseFloat(DiscountCalculated);
-
         $('#Gross_' + id[1]).val(Gross);
-
-
         var TaxID = $('#TaxID_' + id[1]).val();
-
         var TaxCalculation = ((parseFloat(Gross) * parseFloat(TaxID)) / 100).toFixed(2);
-
         $('#TaxVal_' + id[1]).val(TaxCalculation);
-
-
         var ItemTotal = parseFloat(Gross) - parseFloat(TaxCalculation);
-
         $('#ItemTotal_' + id[1]).val(ItemTotal);
-
-
-
         var grandtotaltax = 0;
         var TotalVat = 0;
-
         $('.totalLinePrice2').each(function() {
             if ($(this).val() != '') grandtotaltax += parseFloat($(this).val());
         });
-
         $('#grandtotaltax').val((parseFloat(grandtotaltax)).toFixed(2));
-
-
         TaxIncExc();
-
-
-
         calculateTotal();
-
         if (isNaN($('#discountAmount').val())) {
             $('#discountAmount').val(0);
         }
-
         calculatediscount();
         calculateTotal();
         TaxIncExc();
-
-
     }
  
     //deletes the selected table rows
@@ -1047,16 +1023,14 @@
             { 
                 var Price_ = parseFloat(Weight)*parseFloat(Freight);
                 var TaxID_ = $('#TaxID_' + i).val();
-                    $('#Vat_' + i).val((parseFloat(Price_)*parseFloat(TaxID_/100)).toFixed(2));
-                
+                $('#Vat_' + i).val((parseFloat(Price_)*parseFloat(TaxID_/100)).toFixed(2));
                 $('#Price_' + i).val(Price_);
             }
 
             if (Gross != '') $('#ItemTotal_' + i).val(parseFloat(Gross));
             if ($('#Vat_' + i).val() != '') {
                 Vat += parseFloat($('#Vat_' + i).val());
-            
-        }      
+            }      
 
         }
         if (Vat !== 0) {
