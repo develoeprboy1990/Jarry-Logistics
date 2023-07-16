@@ -705,11 +705,8 @@
      * Site : http:www.smarttutorials.net
      * @author muni
      */
-
-    //adds extra table rows
-   var i = $('table tr').length;
- 
-    $(".addmore").on('click', function() {
+    $(document).on('click', '.addmore', function() {
+        var i = $('table tr').length;
 
         html = '<tr class= borde-1 border-light">';
         html += '<td valign="top" class="p-1 text-left"><input class="case" type="checkbox"/></td>';
@@ -958,12 +955,12 @@
             Gross   = $('#Gross_' + i).val();
             Weight  = $('#Weight_' + i).val();
             Freight = $('#Freight_' + i).val();
-            if (Weight != '' && Freight != '')
-            { 
+            
+            if (($('#Weight_'+ i) && Weight) &&  ($('#Freight_'+ i) && Freight ) )
+            {
                 var Price_ = parseFloat(Weight)*parseFloat(Freight);
                 var TaxID_ = $('#TaxID_' + i).val();
-                    $('#Vat_' + i).val((parseFloat(Price_)*parseFloat(TaxID_/100)).toFixed(2));
-                
+                $('#Vat_' + i).val((parseFloat(Price_)*parseFloat(TaxID_/100)).toFixed(2));
                 $('#Price_' + i).val(Price_);
             }
 

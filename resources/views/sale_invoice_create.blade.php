@@ -594,7 +594,7 @@
                         </div>
                         <div class="row mt-4">
 
-                            <div class="col-lg-7 col-12  ">
+                            <div class="col-lg-8 col-12  ">
                                 <h6>Customer Notes: </h6>
 
 
@@ -620,7 +620,7 @@
                             </div>
 
 
-                            <div class="col-lg-5 col-12 ">
+                            <div class="col-lg-4 col-12 ">
                                 <!-- <input type="text" class="form-control" id="TotalTaxAmount" name="TaxTotal" placeholder="TaxTotal" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"> -->
                                 <form class="form-inline">
                                     <!--  <div class="form-group mt-1">
@@ -769,14 +769,13 @@
      * @author muni
      */
 
-    var i = $('table tr').length;
+   
 
-    $(".addmore").on('click', function() {
-
+    $(document).on('click', '.addmore', function() {
+        var i = $('table tr').length;
         html = '<tr class= borde-1 border-light">';
         html += '<td valign="top" class="p-1 text-left"><input class="case" type="checkbox"/></td>';
         html += '<td><input type="text" name="Description[]" id="Description[]" rows="2" class="form-control" style="width: 300px !important;"></td>';
-
 
 
         html += '<input type="hidden" name="Qty[]" id="Qty_' + i + '" class="form-control changesNo QtyTotal" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" value="1">';
@@ -826,9 +825,7 @@
 
 
 
-    function km(v, id) {
-
-        // alert(v+id);
+    function km(v, id) { 
 
         id_arr = 'ItemID0_' + id;
         id = id_arr.split("_");
@@ -931,11 +928,7 @@
         $('.QtyTotal').each(function() {
             if ($(this).val() != '') QtyTotal += parseFloat($(this).val());
         });
-
-
         $('#QtyTotal').text(QtyTotal);
-
-
     }
 
     //price change
@@ -945,6 +938,11 @@
         calculateTotal();
         TaxIncExc();
     });
+
+    function combineAll()
+    {
+        
+    }
 
     //////////
 
@@ -981,8 +979,7 @@
     }
 
     function TaxIncExc() {
-        var TaxType = $('#TaxType').val();
-        // var subTotal = $('#subTotal').val();
+        var TaxType = $('#TaxType').val(); 
         var DiscountAmount = $('#discountAmount').val();
         var grandtotaltax = 0;
         var table_lenght = $('table tr').length - 1;
@@ -1019,23 +1016,28 @@
             Gross   = $('#Gross_' + i).val();
             Weight  = $('#Weight_' + i).val();
             Freight = $('#Freight_' + i).val();
-            if (Weight != '' && Freight != '')
-            { 
+
+            if (($('#Weight_'+ i) && Weight) &&  ($('#Freight_'+ i) && Freight ) )
+            {
                 var Price_ = parseFloat(Weight)*parseFloat(Freight);
                 var TaxID_ = $('#TaxID_' + i).val();
                 $('#Vat_' + i).val((parseFloat(Price_)*parseFloat(TaxID_/100)).toFixed(2));
                 $('#Price_' + i).val(Price_);
             }
+            else{
+                console.log('looto nex after it='+i);
+                continue;
+            }
 
-            if (Gross != '') $('#ItemTotal_' + i).val(parseFloat(Gross));
-            if ($('#Vat_' + i).val() != '') {
+            if (Gross != '' && Gross != 'undefined'){ $('#ItemTotal_' + i).val(parseFloat(Gross));}
+            if ($('#Vat_' + i).val() != '' && $('#Vat_' + i).val() != 'undefined') {
                 Vat += parseFloat($('#Vat_' + i).val());
-            }      
+            }     
 
         } 
-                TotalVat = Vat.toFixed(2);
-                $('#TotalVat').val(TotalVat);
-           
+        TotalVat = Vat.toFixed(2);
+        $('#TotalVat').val(TotalVat);
+         
         $('.totalLinePrice2').each(function() {
             if ($(this).val() != '') grandtotaltax += parseFloat($(this).val());
         });
@@ -1064,19 +1066,7 @@
 
         }
 
-    }
-
-
-    $(document).on('change', '.changesNoo', function() {
-
-        id_arr = $(this).attr('id');
-        id = id_arr.split("_");
-        val = $('#ItemID0_' + id[1]).val().split("|");
-        // alert($('#ItemID0_'+id[1]).val());
-        $('#ItemID_' + id[1]).val(val[0]);
-        calculatediscount();
-    });
-
+    } 
     ////////////////////////////////////////////
     function calculatediscount() {
         subTotal = parseFloat($('#subTotal').val());
@@ -1096,67 +1086,24 @@
             $('#Grandtotal').val(total.toFixed(2) + parseFloat($('#grandtotaltax').val()));
         }
 
-    }
-
-
-    $(document).on('blur', '#discountAmount', function() {
-
-
-        // calculatediscountper();
-
-
-    });
+    } 
 
     function calculatediscountper() {
-
         subTotal = parseFloat($('#subTotal').val());
-
-
         discountAmount = $('#discountAmount').val();
-        // totalafterdisc = $('#totalAftertax').val();
-        // console.log('testing'.totalAftertax);
         if (discountAmount != '' && typeof(discountAmount) != "undefined") {
             discountper = (parseFloat(discountAmount) / parseFloat(subTotal)) * 100;
-
             $('#discountper').val(parseFloat(discountper.toFixed(2)));
-
             total = subTotal - discountAmount;
             $('#Total').val(total.toFixed(2));
-
-            // $('#grandtotal').val(total.toFixed(2));
-
         } else {
             $('#discountper').val(0);
-            // alert('dd');
-            // $('#discountper').val(0);
             total = subTotal;
             $('#Total').val(total.toFixed(2));
-
         }
-
         $('#Grandtotal').val(total + parseFloat($('#grandtotaltax').val()));
 
-    }
-
-    //////////////////
-
-    // discount percentage
-    $(document).on(' blur ', '#discountper', function() {
-        calculatediscount();
-
-
-    });
-    $(document).on('change keyup blur   onclick', '#taxpercentage', function() {
-        calculateTotal();
-    });
-
-
-    $(document).on('change keyup blur   onclick', '#shipping', function() {
-        calculateTotal();
-    });
-
-
-
+    }  
     //total price calculation 
     function calculateTotal() {
         subTotal = $('#subTotal').val();
