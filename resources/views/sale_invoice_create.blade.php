@@ -1032,11 +1032,10 @@
                 Vat += parseFloat($('#Vat_' + i).val());
             }      
 
-        }
-        if (Vat !== 0) {
+        } 
                 TotalVat = Vat.toFixed(2);
                 $('#TotalVat').val(TotalVat);
-            } 
+           
         $('.totalLinePrice2').each(function() {
             if ($(this).val() != '') grandtotaltax += parseFloat($(this).val());
         });

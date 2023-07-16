@@ -922,8 +922,7 @@
         var Price = 0;
         var TaxVal = 0;
         var Gross = 0;
-        var Vat = 0;
-
+        var Vat = 0; 
         Insurance = $('#Insurance').val();
         DocumentFees = $('#DocumentFees').val();
         PackingFee = $('#PackingFee').val();
@@ -961,15 +960,15 @@
             }
 
             if (Gross != '') $('#ItemTotal_' + i).val(parseFloat(Gross));
-            if ($('#Vat_' + i).val() !== '' && typeof $('#Vat_' + i).val() !== 'undefined' && $('#Vat_' + i).val() !== '0.00') {
+            if ($('#Vat_' + i).val() !== '' && typeof $('#Vat_' + i).val() !== 'undefined') {
                 Vat += parseFloat($('#Vat_' + i).val());
-            }      
+            }   
+          
 
-        }
-        if (Vat !== 0) {
-                TotalVat = Vat.toFixed(2);
-                $('#TotalVat').val(TotalVat);
-            } 
+        } 
+            TotalVat = Vat.toFixed(2);
+            $('#TotalVat').val(TotalVat);
+            
         $('.totalLinePrice2').each(function() {
             if ($(this).val() != '') grandtotaltax += parseFloat($(this).val());
         });
