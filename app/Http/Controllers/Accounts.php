@@ -749,7 +749,6 @@ class Accounts extends Controller
 
 <a href="' . URL('/SaleInvoiceView/' . $row->InvoiceMasterID) . '"><i class="font-size-18 mdi mdi-eye-outline align-middle me-1 text-secondary"></i></a>
 <a href="' . URL('/SaleInvoiceViewPDF2/' . $row->InvoiceMasterID) . '"><i class="font-size-18 mdi mdi-cloud-print-outline align-middle me-1 text-secondary"></i></a>
-<a href="' . URL('/SaleInvoiceViewPDF/' . $row->InvoiceMasterID) . '"><i class="font-size-18 me-1 mdi mdi-file-pdf-outline align-middle me-1 text-secondary"></i></a>
 <a href="' . URL('/SaleInvoiceEdit/' . $row->InvoiceMasterID) . '"><i class="font-size-18 bx bx-pencil align-middle me-1 text-secondary"></i></a>
  
 
@@ -5726,7 +5725,8 @@ class Accounts extends Controller
           'Discount'           => $request->Discount[$i],
           'DiscountType'       => $request->DiscountType[$i],
           'Gross'              => $request->Gross[$i],
-          'DiscountAmountItem' => 0
+          'DiscountAmountItem' => 0,
+          'Status' => 'Loading',
         );
         $id = DB::table('invoice_detail')->insertGetId($invoice_det);
       }
@@ -5952,9 +5952,11 @@ class Accounts extends Controller
 
     $vhno = DB::table('invoice_master')
       ->select(DB::raw('LPAD(IFNULL(MAX(right(InvoiceNo,5)),0)+1,5,0) as VHNO '))->where(DB::raw('left(InvoiceNo,3)'), 'INV', 'invoice_type')->get();
+
+    $status = array('Loading','For Departure','Custom Clearnce','Onthe Way','Delivered'); 
       
     //return view('sale_invoice_edit', compact('invoice_type', 'items', 'vhno', 'party', 'pagetitle', 'item', 'user', 'invoice_master', 'invoice_detail', 'tax'));
-    return view('sale_invoice_edit_logistics', compact('invoice_type', 'items', 'vhno', 'party', 'pagetitle', 'item', 'user', 'invoice_master', 'invoice_detail', 'tax','user_rider'));
+    return view('sale_invoice_edit_logistics', compact('invoice_type', 'items', 'vhno', 'party', 'pagetitle', 'item', 'user', 'invoice_master', 'invoice_detail', 'tax','user_rider','status'));
   }
 
   public  function SaleInvoiceUpdate(request $request)
@@ -6056,7 +6058,9 @@ class Accounts extends Controller
           'Discount'           => $request->Discount[$i],
           'DiscountType'       => $request->DiscountType[$i],
           'Gross'              => $request->Gross[$i],
-          'DiscountAmountItem' => 0
+          'DiscountAmountItem' => 0,
+          'Status' => $request->Status[$i],
+          
         );
         $id = DB::table('invoice_detail')->insertGetId($invoice_det);
       }

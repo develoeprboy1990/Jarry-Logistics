@@ -28,3 +28,7 @@ Create or Replace View v_invoice_detail AS  select `invoice_detail`.`InvoiceNo` 
 15-07-2023
 
 ALTER TABLE `invoice_master` ADD `RiderID` VARCHAR(255) NULL DEFAULT NULL AFTER `UserID`;
+
+
+16-07-2023
+ALTER TABLE `invoice_detail` ADD `Status` VARCHAR(255) NULL DEFAULT NULL AFTER `Total`;

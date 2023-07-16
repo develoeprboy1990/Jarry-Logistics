@@ -594,7 +594,7 @@
                         </div>
                         <div class="row mt-4">
 
-                            <div class="col-lg-8 col-12  ">
+                            <div class="col-lg-7 col-12  ">
                                 <h6>Customer Notes: </h6>
 
 
@@ -620,7 +620,7 @@
                             </div>
 
 
-                            <div class="col-lg-4 col-12 ">
+                            <div class="col-lg-5 col-12 ">
                                 <!-- <input type="text" class="form-control" id="TotalTaxAmount" name="TaxTotal" placeholder="TaxTotal" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"> -->
                                 <form class="form-inline">
                                     <!--  <div class="form-group mt-1">
