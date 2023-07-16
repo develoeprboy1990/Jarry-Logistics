@@ -480,6 +480,7 @@
                                         <tr class=" borde-1 border-light " style="height: 40px;">
                                             <th width="1%" class="text-center"><input id="check_all" type="checkbox" /></th>
                                             <th width="1%">ITEM DETAILS </th>
+                                            <th width="1%">Status </th>
                                             <th width="2%">WEIGHT</th>
                                             <th width="2%">FREIGHT</th>
 
@@ -496,6 +497,13 @@
                                             <td class="p-1"><input class="case" type="checkbox" /></td>
                                             <td valign="top">
                                                   <input type="text" name="Description[]" id="Description[]" class="form-control" value="{{$value1->Description}}"  style="width: 300px !important;">
+                                            </td>
+                                            <td valign="top">
+                                                <select name="Status[]" id="Status[]" class="form-control" style="width:200px;">
+                                                    <?php foreach ($status as $key => $value) : ?>
+                                                    <option value="{{$value}}" {{($value== $value1->Status) ? 'selected=selected':'' }}>{{$value}}</option>
+                                                <?php endforeach ?>
+                                                </select>
                                             </td>
                                             <input type="hidden" name="Qty[]" id="Qty_1" class=" form-control changesNo QtyTotal" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" step="0.01" value="1">
 
